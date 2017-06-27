@@ -12,9 +12,9 @@ import android.view.animation.DecelerateInterpolator;
 import com.one.hotchpotch.R;
 import com.one.hotchpotch.adapter.PagerAdapter;
 import com.one.hotchpotch.base.BaseActivity;
-import com.one.hotchpotch.ui.fragment.ColorFlipPagerTitleView;
+import com.one.hotchpotch.widget.ColorFlipPagerTitleView;
 import com.one.hotchpotch.ui.fragment.HomeFragment;
-import com.one.hotchpotch.ui.fragment.NewsFragment;
+import com.one.hotchpotch.ui.fragment.ArticleFragment;
 import com.one.hotchpotch.ui.fragment.MyFragment;
 import com.one.hotchpotch.ui.fragment.PushFragment;
 import com.one.hotchpotch.ui.fragment.SettingFragment;
@@ -45,7 +45,7 @@ public class MainActivity extends BaseActivity {
 //    @Bind(R.id.toolbar)
 //    Toolbar toolbar;
 
-    private static final String[] CHANNELS = new String[]{"CUPCAKE", "DONUT", "ECLAIR", "GINGERBREAD", "HONEYCOMB"};
+    private static final String[] CHANNELS = new String[]{"文章", "DONUT", "ECLAIR", "GINGERBREAD", "HONEYCOMB"};
     private List<String> mDataList = Arrays.asList(CHANNELS);
 
     @Override
@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity {
 
     private List<Fragment> getFragments() {
         List<Fragment> fragments = new ArrayList<>(mDataList.size());
-        fragments.add(new NewsFragment());
+        fragments.add(new ArticleFragment());
         fragments.add(new HomeFragment());
         fragments.add(new MyFragment());
         fragments.add(new PushFragment());

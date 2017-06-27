@@ -39,9 +39,9 @@ class LoggerInterceptor implements Interceptor {
 //        String sign = method + SERVER_KEY + yct;
 //        sign = Md5Utils.crypt(sign);
         HttpUrl newUrl = request.url().newBuilder()
-                .addQueryParameter("sign","a0038a2efe62c64daa82addedad5d5d8")
-                .addQueryParameter("yct","1480328201")//模拟数据
-                .addQueryParameter("shopid", "39")
+//                .addQueryParameter("sign","a0038a2efe62c64daa82addedad5d5d8")
+//                .addQueryParameter("yct","1480328201")//模拟数据
+//                .addQueryParameter("shopid", "39")
                 .build();
         //http://yuecaninfo.com/services/api_boss.php?cmd=get_date&sign=c691934e14bcf492fbd08ef14f1a0bcb&yct=1480042317&shopid=39
         request = request.newBuilder().url(newUrl).build();
@@ -78,7 +78,7 @@ class LoggerInterceptor implements Interceptor {
             }
         }
         String url = sb.deleteCharAt(sb.length() - 1).toString();
-        Log.i("json", url);
+        LogUtils.i("json", url);
     }
 
     /**

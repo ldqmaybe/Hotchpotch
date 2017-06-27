@@ -1,7 +1,7 @@
 package com.one.hotchpotch.base;
 
 
-import com.one.hotchpotch.net.ApiService;
+import com.one.hotchpotch.net.ArticleService;
 import com.one.hotchpotch.net.RetrofitHttp;
 import com.one.hotchpotch.net.RxManager;
 
@@ -17,8 +17,8 @@ public abstract class BasePresenter<V> {
         this.mRxManage = new RxManager();
     }
 
-    public ApiService getService(Class<ApiService> cls) {
-        return RetrofitHttp.getInstance().createService(cls);
+    public ArticleService getArticleService(Class<ArticleService> cls) {
+        return RetrofitHttp.getInstance().createArticleService(cls);
     }
 
     public void attachView(V view) {

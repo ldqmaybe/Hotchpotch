@@ -95,7 +95,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         AppManager.getInstance().finishActivity(this);
     }
 
-    public void showDialog() {
+    public void showDialog(String text) {
         dialog = new ProgressDialog(this);
         dialog.setMessage("加载中...");
         dialog.show();

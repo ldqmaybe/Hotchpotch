@@ -1,4 +1,4 @@
-package com.one.hotchpotch.ui.fragment;
+package com.one.hotchpotch.widget;
 
 import android.content.Context;
 

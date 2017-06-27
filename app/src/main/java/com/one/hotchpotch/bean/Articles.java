@@ -13,7 +13,7 @@ public class Articles {
      */
 
     private boolean error;
-    private List<ResultsBean> results;
+    private List<Article> results;
 
     public boolean isError() {
         return error;
@@ -23,15 +23,15 @@ public class Articles {
         this.error = error;
     }
 
-    public List<ResultsBean> getResults() {
+    public List<Article> getResults() {
         return results;
     }
 
-    public void setResults(List<ResultsBean> results) {
+    public void setResults(List<Article> results) {
         this.results = results;
     }
 
-    public static class ResultsBean {
+    public static class Article {
         /**
          * _id : 593f2091421aa92c769a8c6a
          * createdAt : 2017-06-13T07:15:29.423Z

@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitHttp {
     private static final int DEFAULT_TIMEOUT = 5;
-    private final Retrofit retrofit;
+    private Retrofit aticleRetrofit;
 
     private static class SingleHolder {
         private static final RetrofitHttp INSTANCE = new RetrofitHttp();
@@ -23,20 +23,28 @@ public class RetrofitHttp {
         return SingleHolder.INSTANCE;
     }
 
-    private RetrofitHttp() {
+    private OkHttpClient getOkHttp() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(new LoggerInterceptor())//添加拦截器
                 .build();
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://yuecaninfo.com/services/")
-                .client(okHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        return okHttpClient;
+
     }
 
-    public <S> S createService(Class<S> serviceClass) {
-        return retrofit.create(serviceClass);
+    private Retrofit getArticleRetrfit() {
+        if (aticleRetrofit == null) {
+            aticleRetrofit = new Retrofit.Builder()
+                    .baseUrl(ArticleService.ARTICLE_URL)
+                    .client(getOkHttp())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return aticleRetrofit;
+    }
+
+    public <S> S createArticleService(Class<S> serviceClass) {
+        return getArticleRetrfit().create(serviceClass);
     }
 }

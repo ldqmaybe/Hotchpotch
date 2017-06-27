@@ -11,9 +11,9 @@ import rx.Observable;
  * @author Admin
  * @time 2016/11/24 0024.14:13
  */
-public interface ApiService {
-    String URL = "http://gank.io/api";
+public interface ArticleService {
+    String ARTICLE_URL = "http://gank.io/api/";
     //    http://gank.io/api/data/Android/10/1
-    @GET("data/Android/{index}")
-    Observable<Articles> getArticles(@Path("index") String index);
+    @GET("data/Android/{counts}/{page}")
+    Observable<Articles> getArticles(@Path("counts") int counts,@Path("page") int page);
 }
