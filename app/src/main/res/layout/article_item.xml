@@ -23,19 +23,35 @@
             android:gravity="center_vertical"
             android:hint="test"
             android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/article_who"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_20"
-            android:gravity="center_vertical"
-            android:hint="test"
+        <LinearLayout
             android:paddingBottom="@dimen/dp_4"
             android:paddingTop="@dimen/dp_4"
-            android:textSize="10sp" />
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="@dimen/dp_20">
+            <TextView
+                android:id="@+id/article_who"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:hint="test"
+                android:textSize="10sp" />
+            <TextView
+                android:id="@+id/article_time"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:hint="test"
+                android:textSize="10sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/imageView"
+        android:layout_gravity="center"
         android:layout_width="@dimen/dp_72"
         android:layout_height="@dimen/dp_72"
         android:src="@mipmap/ic_launcher_round" />

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
@@ -12,12 +13,12 @@ import android.view.animation.DecelerateInterpolator;
 import com.one.hotchpotch.R;
 import com.one.hotchpotch.adapter.PagerAdapter;
 import com.one.hotchpotch.base.BaseActivity;
-import com.one.hotchpotch.widget.ColorFlipPagerTitleView;
-import com.one.hotchpotch.ui.fragment.HomeFragment;
 import com.one.hotchpotch.ui.fragment.ArticleFragment;
+import com.one.hotchpotch.ui.fragment.HomeFragment;
 import com.one.hotchpotch.ui.fragment.MyFragment;
 import com.one.hotchpotch.ui.fragment.PushFragment;
 import com.one.hotchpotch.ui.fragment.SettingFragment;
+import com.one.hotchpotch.widget.ColorFlipPagerTitleView;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -42,8 +43,8 @@ public class MainActivity extends BaseActivity {
     MagicIndicator magicIndicator;
     @Bind(R.id.view_pager)
     ViewPager viewPager;
-//    @Bind(R.id.toolbar)
-//    Toolbar toolbar;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
     private static final String[] CHANNELS = new String[]{"文章", "DONUT", "ECLAIR", "GINGERBREAD", "HONEYCOMB"};
     private List<String> mDataList = Arrays.asList(CHANNELS);
@@ -55,9 +56,17 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+//        getToolbarTitle().setText(getResources().getString(R.string.app_name));
+        setToolBarTitle(getResources().getString(R.string.app_name));
+        setTitleRight("更多");
+//        getSubTitle().setText("更多");
         initViewPager();
         initIndicator();
-//        toolbar.setTitle(mDataList.get(0));
+    }
+
+    @Override
+    protected boolean isShowBacking() {
+        return false;
     }
 
     private void initViewPager() {

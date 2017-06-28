@@ -9,7 +9,7 @@
     <com.one.hotchpotch.widget.NumberProgressBar
         android:id="@+id/numberProgressBar"
         android:layout_width="match_parent"
-        android:layout_height="5dp" />
+        android:layout_height="10dp" />
 
     <WebView
         android:id="@+id/wvBoss"

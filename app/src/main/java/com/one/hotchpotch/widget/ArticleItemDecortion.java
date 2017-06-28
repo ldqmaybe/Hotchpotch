@@ -41,7 +41,7 @@ public class ArticleItemDecortion extends RecyclerView.ItemDecoration {
         int childCount = parent.getChildCount();
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
-        for (int i = 0; i < childCount; i++) {
+        for (int i = 0; i < childCount-1; i++) {
             View view = parent.getChildAt(i);
 //            int left = view.getPaddingLeft();
 //            int right = view.getWidth() - view.getPaddingRight();

@@ -95,7 +95,7 @@ public class ArticleFragment extends BaseFragment<ArticlePresenter> implements A
         adapter = new BaseQuickAdapter<Articles.Article, BaseViewHolder>(R.layout.article_item) {
             @Override
             protected void convert(BaseViewHolder helper, Articles.Article article) {
-                helper.setText(R.id.article_title, article.getDesc()).setText(R.id.article_who, "作者：" + article.getWho());
+                helper.setText(R.id.article_title, article.getDesc()).setText(R.id.article_who, "作者：" + article.getWho()).setText(R.id.article_time,"发布时间："+article.getPublishedAt().split("T")[0]);
             }
         };
         recycle.setAdapter(adapter);
