@@ -8,6 +8,7 @@ import android.webkit.WebViewClient;
 
 import com.one.hotchpotch.R;
 import com.one.hotchpotch.base.BaseActivity;
+import com.one.hotchpotch.utils.ToolbarUtils;
 import com.one.hotchpotch.widget.NumberProgressBar;
 
 import butterknife.Bind;
@@ -16,6 +17,9 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 文章
+ */
 public class ArticleWebActivity extends BaseActivity {
     @Bind(R.id.wvBoss)
     WebView wvBoss;
@@ -29,6 +33,12 @@ public class ArticleWebActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        ToolbarUtils.setLeft(R.mipmap.ic_back, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArticleWebActivity.this.finish();
+            }
+        });
         String url = getIntent().getStringExtra("url");
         WebSettings setting = wvBoss.getSettings();
         setting.setJavaScriptEnabled(true);

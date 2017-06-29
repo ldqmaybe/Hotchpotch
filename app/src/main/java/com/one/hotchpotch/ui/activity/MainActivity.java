@@ -2,7 +2,6 @@ package com.one.hotchpotch.ui.activity;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +17,7 @@ import com.one.hotchpotch.ui.fragment.HomeFragment;
 import com.one.hotchpotch.ui.fragment.MyFragment;
 import com.one.hotchpotch.ui.fragment.PushFragment;
 import com.one.hotchpotch.ui.fragment.SettingFragment;
+import com.one.hotchpotch.utils.ToolbarUtils;
 import com.one.hotchpotch.widget.ColorFlipPagerTitleView;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -35,7 +35,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
@@ -56,17 +55,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-//        getToolbarTitle().setText(getResources().getString(R.string.app_name));
-        setToolBarTitle(getResources().getString(R.string.app_name));
-        setTitleRight("更多");
-//        getSubTitle().setText("更多");
+        ToolbarUtils.setTitle(getResources().getString(R.string.app_name));
+        ToolbarUtils.setLeft(R.mipmap.ic_back);
         initViewPager();
         initIndicator();
-    }
-
-    @Override
-    protected boolean isShowBacking() {
-        return false;
     }
 
     private void initViewPager() {
@@ -124,12 +116,5 @@ public class MainActivity extends BaseActivity {
         });
         magicIndicator.setNavigator(commonNavigator7);
         ViewPagerHelper.bind(magicIndicator, viewPager);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

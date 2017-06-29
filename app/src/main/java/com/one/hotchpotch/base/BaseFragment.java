@@ -5,16 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.one.hotchpotch.utils.HideUtil;
+import com.one.hotchpotch.utils.ToolbarUtils;
 
 import butterknife.ButterKnife;
 
-
 /**
+ * Fragment的基类
  * Created by Administrator on 2016/2/4.
  */
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
@@ -61,6 +63,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
         }
 
     }
+
     public void showDialog() {
         dialog = new ProgressDialog(getActivity());
         dialog.setMessage("加载中...");
@@ -81,6 +84,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
             isPrepared = true;
             ButterKnife.bind(getActivity());
             HideUtil.init(getActivity());
+            ToolbarUtils.init((AppCompatActivity) getActivity());
             this.mPresenter = initPresenter();
             this.initBindingView();
             onVisible();
@@ -96,12 +100,14 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
         }
         return baseView;
     }
+
     /**
      * 简单页面无需mvp就不用管此方法即可,完美兼容各种实际场景的变通
      */
     protected T initPresenter() {
         return mPresenter;
     }
+
     /**
      * presenter与view绑定
      */
@@ -109,11 +115,13 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
         if (mPresenter != null)
             mPresenter.attachView(this);
     }
+
     /**
      * 处理Intent，防止开发人员没做Intent判空
      */
     protected void handleIntent(Intent intent) {
     }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -194,14 +202,16 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
         loadData();
     }
 
-
     protected abstract LoadMode getMode();
 
     protected abstract View getView(LayoutInflater inflater);
 
-    protected  void loadData(){
+    protected void loadData() {
 
-    };
+    }
+
+    ;
+
     /**
      * onDestroy中销毁presenter
      */

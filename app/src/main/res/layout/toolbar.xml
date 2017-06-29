@@ -14,7 +14,6 @@
         android:layout_gravity="left"
         android:maxLines="1"
         android:paddingRight="10dp"
-        android:text="left"
         android:textColor="@color/white" />
     <TextView
         android:id="@+id/toolbar_right"
@@ -24,7 +23,6 @@
         android:layout_gravity="right"
         android:maxLines="1"
         android:paddingRight="10dp"
-        android:text="right"
         android:textColor="@color/white" />
 
     <TextView
@@ -36,7 +34,6 @@
         android:ellipsize="end"
         android:lines="1"
         android:scrollHorizontally="true"
-        android:text="title"
         android:textColor="@color/white" />
 
 </android.support.v7.widget.Toolbar>

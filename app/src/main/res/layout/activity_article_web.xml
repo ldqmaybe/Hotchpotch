@@ -6,6 +6,8 @@
     android:orientation="vertical"
     tools:context="com.one.hotchpotch.ui.activity.ArticleWebActivity">
 
+    <include layout="@layout/toolbar" />
+
     <com.one.hotchpotch.widget.NumberProgressBar
         android:id="@+id/numberProgressBar"
         android:layout_width="match_parent"
