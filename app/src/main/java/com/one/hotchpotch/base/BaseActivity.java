@@ -9,8 +9,10 @@ import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.one.hotchpotch.R;
 import com.one.hotchpotch.utils.AppManager;
 import com.one.hotchpotch.utils.HideUtil;
+import com.one.hotchpotch.utils.StatusBarUtil;
 import com.one.hotchpotch.utils.ToolbarUtils;
 
 import butterknife.ButterKnife;
@@ -28,6 +30,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         super.onCreate(savedInstanceState);
         setContentView(setLayoutId());
         AppManager.getInstance().addActivityTOStack(this);
+        setStatusBar();
         mContext = this;
         ButterKnife.bind(this);
         HideUtil.init(this);
@@ -52,7 +55,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         ButterKnife.unbind(this);
         AppManager.getInstance().finishActivity(this);
     }
-
+    protected void setStatusBar() {
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
+    }
     /**
      * presenter与view绑定
      */

@@ -2,8 +2,11 @@ package com.one.hotchpotch.ui.activity;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -35,6 +38,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
@@ -44,6 +48,8 @@ public class MainActivity extends BaseActivity {
     ViewPager viewPager;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.drawer_layout)
+    DrawerLayout drawer;
 
     private static final String[] CHANNELS = new String[]{"文章", "DONUT", "ECLAIR", "GINGERBREAD", "HONEYCOMB"};
     private List<String> mDataList = Arrays.asList(CHANNELS);
@@ -55,8 +61,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        toolbar = ToolbarUtils.getToolbar();
         ToolbarUtils.setTitle(getResources().getString(R.string.app_name));
-        ToolbarUtils.setLeft(R.mipmap.ic_back);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
         initViewPager();
         initIndicator();
     }
@@ -116,5 +125,12 @@ public class MainActivity extends BaseActivity {
         });
         magicIndicator.setNavigator(commonNavigator7);
         ViewPagerHelper.bind(magicIndicator, viewPager);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

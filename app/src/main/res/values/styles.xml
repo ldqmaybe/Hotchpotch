@@ -1,14 +1,12 @@
 <resources>
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme.Base">
         <!-- 状态栏和标题栏颜色-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.Base">
         <!-- 溢出菜单图标颜色-->
         <item name="colorControlNormal">@android:color/white</item>
         <!-- 左边箭头 -->
