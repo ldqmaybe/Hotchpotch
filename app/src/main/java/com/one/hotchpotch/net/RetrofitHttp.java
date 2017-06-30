@@ -43,8 +43,22 @@ public class RetrofitHttp {
         }
         return aticleRetrofit;
     }
+    private Retrofit getHotchpotchRetrfit() {
+        if (aticleRetrofit == null) {
+            aticleRetrofit = new Retrofit.Builder()
+                    .baseUrl(HotchpotchService.HOTCHPOTCH_URL)
+                    .client(getOkHttp())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return aticleRetrofit;
+    }
 
     public <S> S createArticleService(Class<S> serviceClass) {
         return getArticleRetrfit().create(serviceClass);
+    }
+    public <S> S createHotchpotchService(Class<S> serviceClass) {
+        return getHotchpotchRetrfit().create(serviceClass);
     }
 }

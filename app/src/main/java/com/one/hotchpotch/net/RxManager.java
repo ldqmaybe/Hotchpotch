@@ -74,12 +74,14 @@ public class RxManager {
 
         @Override
         public T call(BaseHttpResult<T> baseHttpResult) {
-            if (!baseHttpResult.getResult().equals("0")) {
+            if (baseHttpResult.getCode()==0) {
+                return baseHttpResult.getData();
+            }else {
                 //在这里处理请求返回的错误信息（）
                 //将错误信息抛给Subscriber.onError()统一处理
-                throw new RuntimeException(baseHttpResult.getRemark());
+                throw new RuntimeException(baseHttpResult.getMsg());
             }
-            return baseHttpResult.getData();
+
         }
     }
 

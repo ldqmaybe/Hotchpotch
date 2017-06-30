@@ -134,6 +134,16 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
         mActivity = (BaseActivity) context;
     }
 
+    /**
+     * onDestroy中销毁presenter
+     */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mPresenter != null)
+            mPresenter.detachView();
+        ButterKnife.unbind(this);
+    }
     protected void onVisible() {
 
         //取得加载模式
@@ -209,18 +219,4 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     protected void loadData() {
 
     }
-
-    ;
-
-    /**
-     * onDestroy中销毁presenter
-     */
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mPresenter != null)
-            mPresenter.detachView();
-        ButterKnife.unbind(this);
-    }
-
 }

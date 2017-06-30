@@ -8,6 +8,7 @@ import retrofit2.http.Path;
 import rx.Observable;
 
 /**
+ * 干货集中营的接口
  * @author Admin
  * @time 2016/11/24 0024.14:13
  */

@@ -2,6 +2,7 @@ package com.one.hotchpotch.base;
 
 
 import com.one.hotchpotch.net.ArticleService;
+import com.one.hotchpotch.net.HotchpotchService;
 import com.one.hotchpotch.net.RetrofitHttp;
 import com.one.hotchpotch.net.RxManager;
 
@@ -19,6 +20,9 @@ public abstract class BasePresenter<V> {
 
     public ArticleService getArticleService(Class<ArticleService> cls) {
         return RetrofitHttp.getInstance().createArticleService(cls);
+    }
+    public HotchpotchService getHotchpotchService(Class<HotchpotchService> cls) {
+        return RetrofitHttp.getInstance().createHotchpotchService(cls);
     }
 
     public void attachView(V view) {
