@@ -2,11 +2,9 @@ package com.one.hotchpotch.presenter;
 
 import com.one.hotchpotch.base.BasePresenter;
 import com.one.hotchpotch.bean.Articles;
-import com.one.hotchpotch.contract.ArticleContract;
 import com.one.hotchpotch.contract.PushContract;
-import com.one.hotchpotch.net.ArticleService;
+import com.one.hotchpotch.net.ApiService;
 import com.one.hotchpotch.net.RequestCallback;
-import com.one.hotchpotch.ui.fragment.ArticleFragment;
 import com.one.hotchpotch.ui.fragment.PushFragment;
 
 /**
@@ -18,7 +16,7 @@ public class PushPresenter extends BasePresenter<PushFragment> implements PushCo
     @Override
     public void getArticles(int counts,int page) {
 
-        mRxManage.addSubscription(getArticleService(ArticleService.class).getArticles(counts,page), new RequestCallback<Articles>() {
+        mRxManage.add(getService(ApiService.class).getArticles(counts,page), new RequestCallback<Articles>() {
             @Override
             public void onStart() {
                 super.onStart();

@@ -1,7 +1,6 @@
 package com.one.hotchpotch.net;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 
 import com.one.hotchpotch.utils.LogUtils;

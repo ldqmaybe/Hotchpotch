@@ -23,10 +23,10 @@ public class RxManager {
     /**
      * 没有BaseEntity的情况下
      *
-     * @param observable
-     * @param subscriber
+     * @param observable 事件源
+     * @param subscriber 事件源的监听者-观察者
      */
-    public void addSubscription(Observable observable, Subscriber subscriber) {
+    public void add(Observable observable, Subscriber subscriber) {
         if (mSubscription == null) {
             mSubscription = new CompositeSubscription();
         }
@@ -39,11 +39,11 @@ public class RxManager {
     /**
      * 有BaseEntity的情况下
      *
-     * @param observable
-     * @param subscriber
-     * @param <T>
+     * @param observable 事件源
+     * @param subscriber 事件源的监听者-观察者
+     * @param <T> data的泛型
      */
-    public <T> void addSubscription1(Observable<BaseHttpResult<T>> observable, Subscriber<T> subscriber) {
+    public <T> void adds(Observable<BaseHttpResult<T>> observable, Subscriber<T> subscriber) {
         if (null == mSubscription) {
             mSubscription = new CompositeSubscription();
         }
@@ -54,16 +54,15 @@ public class RxManager {
                 .subscribe(subscriber));
     }
 
-    private void unSubscribe() {
+    /**
+     * 将事件源与CompositeSubscription解除绑定，避免出现内存泄露
+     */
+    public void unSubscribe() {
         if (null != mSubscription && !mSubscription.isUnsubscribed()) {
             mSubscription.unsubscribe();
         }
     }
 
-    public void clear() {
-        //加上这句，避免出现内存泄露
-        unSubscribe();
-    }
 
     /**
      * 用来统一处理Http的result,并将HttpResult的Data部分剥离出来返回给subscriber

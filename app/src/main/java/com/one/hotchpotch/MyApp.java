@@ -1,9 +1,7 @@
 package com.one.hotchpotch;
 
-import android.app.Activity;
 import android.app.Application;
-
-import java.util.Stack;
+import android.content.Context;
 
 /**
  * Created by admin on 2017/6/26.
@@ -12,7 +10,9 @@ import java.util.Stack;
 public class MyApp extends Application {
 
     private static MyApp sInstance;
-
+    public static Context getInstance() {
+        return sInstance;
+    }
     @Override
     public void onCreate() {
         super.onCreate();
