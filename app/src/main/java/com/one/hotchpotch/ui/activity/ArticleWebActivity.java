@@ -33,13 +33,16 @@ public class ArticleWebActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        String url = getIntent().getStringExtra("url");
+        String title = getIntent().getStringExtra("title");
+        ToolbarUtils.setTitle(title);
         ToolbarUtils.setLeft(R.mipmap.ic_back, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ArticleWebActivity.this.finish();
             }
         });
-        String url = getIntent().getStringExtra("url");
+
         WebSettings setting = wvBoss.getSettings();
         setting.setJavaScriptEnabled(true);
         // 注册javascript对象，local_obj用于javascript调用

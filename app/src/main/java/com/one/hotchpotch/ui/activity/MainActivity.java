@@ -2,6 +2,7 @@ package com.one.hotchpotch.ui.activity;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -68,6 +69,13 @@ public class MainActivity extends BaseActivity {
         toggle.syncState();
         initViewPager();
         initIndicator();
+//        DrawerLayout的适配
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            //将侧边栏顶部延伸至status bar
+            drawer.setFitsSystemWindows(true);
+            //将主页面顶部延伸至status bar;虽默认为false,但经测试,DrawerLayout需显示设置
+            drawer.setClipToPadding(false);
+        }
     }
 
     private void initViewPager() {

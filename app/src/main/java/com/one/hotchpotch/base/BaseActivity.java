@@ -4,15 +4,15 @@ package com.one.hotchpotch.base;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 
-import com.one.hotchpotch.R;
 import com.one.hotchpotch.utils.AppManager;
 import com.one.hotchpotch.utils.HideUtil;
-import com.one.hotchpotch.utils.StatusBarUtil;
 import com.one.hotchpotch.utils.ToolbarUtils;
 
 import butterknife.ButterKnife;
@@ -56,7 +56,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         AppManager.getInstance().finishActivity(this);
     }
     protected void setStatusBar() {
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
+//        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
+            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+        }
     }
     /**
      * presenter与view绑定

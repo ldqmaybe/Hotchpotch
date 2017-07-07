@@ -109,6 +109,7 @@ public class ArticleFragment extends BaseFragment<ArticlePresenter> implements A
                 Articles.Article article = (Articles.Article) adapter.getData().get(position);
                 Intent intent = new Intent(getActivity(), ArticleWebActivity.class);
                 intent.putExtra("url",article.getUrl());
+                intent.putExtra("title",article.getDesc());
                 startActivity(intent);
             }
         });

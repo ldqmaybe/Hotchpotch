@@ -12,6 +12,8 @@
     <dimen name="divider_bottom">0.5dp</dimen>
     <dimen name="sectioned_alignBottom">8dp</dimen>
 
+    <dimen name="toolbar_padding_top">0dp</dimen>
+
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_2">2dp</dimen>
