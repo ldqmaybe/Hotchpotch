@@ -10,9 +10,10 @@ import android.widget.TextView;
 import com.one.hotchpotch.R;
 
 /**
- * Created by admin on 2017/6/29.
+ * author: LinDingQiang
+ * created on: 2017/6/29 10:19
+ * description:
  */
-
 public class ToolbarUtils {
     private static TextView toolbar_title;
     private static TextView toolbar_right;
@@ -65,6 +66,7 @@ public class ToolbarUtils {
     public static TextView getRight() {
         return toolbar_right;
     }
+
     /**
      * 设置头部标题
      *
@@ -79,6 +81,7 @@ public class ToolbarUtils {
             activity.setSupportActionBar(getToolbar());
         }
     }
+
     /**
      * 设置头部左边标题
      *
@@ -114,7 +117,7 @@ public class ToolbarUtils {
     /**
      * 设置头部左边图标和点击监听
      *
-     * @param icon  设置图标
+     * @param icon     设置图标
      * @param listener 设置监听
      */
     public static void setLeft(int icon, View.OnClickListener listener) {
@@ -146,8 +149,9 @@ public class ToolbarUtils {
     }
 
     /**
-     *  设置头部左边图标和点击监听
-     * @param icon  设置图标
+     * 设置头部左边图标和点击监听
+     *
+     * @param icon     设置图标
      * @param listener 设置监听
      */
     public static void setRight(int icon, View.OnClickListener listener) {

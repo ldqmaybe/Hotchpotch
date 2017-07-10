@@ -1,21 +1,16 @@
 package com.one.hotchpotch;
 
-import android.app.Application;
-import android.content.Context;
+import com.one.base.common.BaseApplication;
 
 /**
- * Created by admin on 2017/6/26.
+ * author: LinDingQiang<br/>
+ * created on: 2017/6/26 17:53<br/>
+ * description:
  */
 
-public class MyApp extends Application {
-
-    private static MyApp sInstance;
-    public static Context getInstance() {
-        return sInstance;
-    }
+public class MyApp extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        sInstance = this;
     }
 }

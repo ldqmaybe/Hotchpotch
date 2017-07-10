@@ -8,8 +8,8 @@ import com.one.hotchpotch.net.RxManager;
 /**
  * Presenter的基类
  *
- * @author Admin
- * @time 2016/11/25 0025.10:31
+ * @author LinDingQiang
+ * @time 2016/11/25 10:31
  */
 public abstract class BasePresenter<V> {
     public V mView;

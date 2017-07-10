@@ -14,8 +14,8 @@ import rx.subscriptions.CompositeSubscription;
 /**
  * 用于管理单个presenter的Rxjava相关代码的生命周期处理
  *
- * @author Admin
- * @time 2016/7/28 0028.14:40
+ * @author LinDingQiang
+ * @time 2016/7/28 14:40
  */
 public class RxManager {
     private CompositeSubscription mSubscription;

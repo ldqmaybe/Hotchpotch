@@ -1,10 +1,9 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'com.neenbedankt.android-apt'
 android {
     compileSdkVersion Integer.parseInt(COMPILE_SDK_VERSION)
     buildToolsVersion BUILDTOOLS_VERSION
     defaultConfig {
-        applicationId "com.one.hotchpotch"
         minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
         targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
         versionCode Integer.parseInt(VERSION_CODE)
@@ -29,12 +28,12 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'org.robolectric:robolectric:3.0'
+    testCompile "org.robolectric:robolectric:3.0"
     testCompile 'junit:junit:4.12'
 
     compile project(':base')
-    compile project(':login')
 
     compile "com.alibaba:arouter-api:${AROUTER_API}"
     apt "com.alibaba:arouter-compiler:${AROUTER_COMPILER}"
 }
+

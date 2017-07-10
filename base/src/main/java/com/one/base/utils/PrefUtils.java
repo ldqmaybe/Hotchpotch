@@ -1,9 +1,9 @@
-package com.one.hotchpotch.utils;
+package com.one.base.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.one.hotchpotch.MyApp;
+import com.one.base.common.BaseApplication;
 
 /**
  * 对SharePreference的封装
@@ -11,7 +11,7 @@ import com.one.hotchpotch.MyApp;
  * @author Kevin
  */
 public class PrefUtils {
-    private static SharedPreferences sp = MyApp.getInstance().getSharedPreferences("config", Context.MODE_PRIVATE);
+    private static SharedPreferences sp = BaseApplication.getInstance().getSharedPreferences("config", Context.MODE_PRIVATE);
 
     public static void putBoolean(String key, boolean value) {
         sp.edit().putBoolean(key, value).commit();
@@ -27,6 +27,9 @@ public class PrefUtils {
 
     public static String getString(String key, String defValue) {
         return sp.getString(key, defValue);
+    }
+    public static String getString(String key) {
+        return sp.getString(key, "error");
     }
 
     public static void putInt(String key, int value) {

@@ -3,16 +3,18 @@ package com.one.hotchpotch.ui.activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.one.base.utils.PrefUtils;
 import com.one.hotchpotch.R;
 import com.one.hotchpotch.adapter.PagerAdapter;
 import com.one.hotchpotch.base.BaseActivity;
@@ -21,6 +23,9 @@ import com.one.hotchpotch.ui.fragment.HomeFragment;
 import com.one.hotchpotch.ui.fragment.MyFragment;
 import com.one.hotchpotch.ui.fragment.PushFragment;
 import com.one.hotchpotch.ui.fragment.SettingFragment;
+import com.one.hotchpotch.utils.AppManager;
+import com.one.hotchpotch.utils.LogUtils;
+import com.one.hotchpotch.utils.ToastUtils;
 import com.one.hotchpotch.utils.ToolbarUtils;
 import com.one.hotchpotch.widget.ColorFlipPagerTitleView;
 
@@ -39,8 +44,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
+@Route(path = "/app/main")
 public class MainActivity extends BaseActivity {
 
     @Bind(R.id.main_indicator)
@@ -54,6 +59,8 @@ public class MainActivity extends BaseActivity {
 
     private static final String[] CHANNELS = new String[]{"文章", "DONUT", "ECLAIR", "GINGERBREAD", "HONEYCOMB"};
     private List<String> mDataList = Arrays.asList(CHANNELS);
+    private long onKeyBackTime;
+    private long onShowToastTime;
 
     @Override
     protected int setLayoutId() {
@@ -76,6 +83,7 @@ public class MainActivity extends BaseActivity {
             //将主页面顶部延伸至status bar;虽默认为false,但经测试,DrawerLayout需显示设置
             drawer.setClipToPadding(false);
         }
+        LogUtils.i(PrefUtils.getString("login"));
     }
 
     private void initViewPager() {
@@ -134,11 +142,23 @@ public class MainActivity extends BaseActivity {
         magicIndicator.setNavigator(commonNavigator7);
         ViewPagerHelper.bind(magicIndicator, viewPager);
     }
-
+    private static final long WAITTIME = 2000;
+    long touchTime = 0;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // 监听返回按钮。2秒内连续点击则退出
+        if (event.getAction() == KeyEvent.ACTION_DOWN
+                && KeyEvent.KEYCODE_BACK == keyCode) {
+            long currentTime = System.currentTimeMillis();
+            if ((currentTime - touchTime) >= WAITTIME) {
+                ToastUtils.showShortToast("再按一次退出");
+                touchTime = currentTime;
+            } else {
+                AppManager.getInstance().finishAllActivity();
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

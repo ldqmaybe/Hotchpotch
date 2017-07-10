@@ -66,12 +66,12 @@ public class ArticleFragment extends BaseFragment<ArticlePresenter> implements A
      */
     private void initViews(View view) {
         mPtrFrame = (PtrClassicFrameLayout) view.findViewById(R.id.rotate_header_list_view_frame);
-        mPtrFrame.postDelayed(new Runnable() {
+        mPtrFrame.post(new Runnable() {
             @Override
             public void run() {
                 mPtrFrame.autoRefresh(true);
             }
-        }, 1000);
+        });
         recycle = (RecyclerView) view.findViewById(R.id.article_rv);
         recycle.setLayoutManager(new LinearLayoutManager(getActivity()));
         recycle.addItemDecoration(new ArticleItemDecortion(getActivity()));
