@@ -14,6 +14,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.one.base.utils.AppManager;
 import com.one.base.utils.PrefUtils;
 import com.one.hotchpotch.R;
 import com.one.hotchpotch.adapter.PagerAdapter;
@@ -23,7 +24,6 @@ import com.one.hotchpotch.ui.fragment.HomeFragment;
 import com.one.hotchpotch.ui.fragment.MyFragment;
 import com.one.hotchpotch.ui.fragment.PushFragment;
 import com.one.hotchpotch.ui.fragment.SettingFragment;
-import com.one.hotchpotch.utils.AppManager;
 import com.one.hotchpotch.utils.LogUtils;
 import com.one.hotchpotch.utils.ToastUtils;
 import com.one.hotchpotch.utils.ToolbarUtils;

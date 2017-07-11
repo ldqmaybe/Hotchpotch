@@ -1,4 +1,4 @@
-package com.one.hotchpotch.utils;
+package com.one.base.utils;
 
 import android.app.Activity;
 import android.app.ActivityManager;

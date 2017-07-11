@@ -33,8 +33,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile project(':base')
-    compile project(':login')
-
+    if (!isDebug.toBoolean()) {
+        compile project(':login')
+    }
     compile "com.alibaba:arouter-api:${AROUTER_API}"
     apt "com.alibaba:arouter-compiler:${AROUTER_COMPILER}"
 }

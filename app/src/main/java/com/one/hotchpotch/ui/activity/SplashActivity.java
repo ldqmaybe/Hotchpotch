@@ -17,6 +17,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 ARouter.getInstance().build("/module/login").navigation();
+                finish();
             }
         },1000);
     }

@@ -11,14 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.one.hotchpotch.utils.AppManager;
+import com.one.base.utils.AppManager;
 import com.one.hotchpotch.utils.HideUtil;
 import com.one.hotchpotch.utils.ToolbarUtils;
 
 import butterknife.ButterKnife;
 
 /**
- * Fragment的基类
+ * Activity的基类
  * @param <T>
  */
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
