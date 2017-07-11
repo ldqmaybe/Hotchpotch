@@ -1,6 +1,6 @@
 package com.one.hotchpotch;
 
-import com.one.base.common.BaseApplication;
+import com.one.base.BaseApplication;
 
 /**
  * author: LinDingQiang<br/>

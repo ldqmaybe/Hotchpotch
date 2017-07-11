@@ -1,10 +1,10 @@
-package com.one.hotchpotch.utils;
+package com.one.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.widget.Toast;
 
-import com.one.base.common.BaseApplication;
+import com.one.base.BaseApplication;
 
 /**
  * author: LinDingQiang <br/>

@@ -2,7 +2,6 @@ package com.one.hotchpotch.net;
 
 import android.text.TextUtils;
 
-
 import com.one.hotchpotch.utils.LogUtils;
 
 import java.io.IOException;

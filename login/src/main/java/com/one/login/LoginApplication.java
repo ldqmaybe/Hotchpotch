@@ -1,7 +1,7 @@
 package com.one.login;
 
 
-import com.one.base.common.BaseApplication;
+import com.one.base.BaseApplication;
 
 /**
  * author: LinDingQiang<br/>
