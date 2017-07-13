@@ -1,7 +1,6 @@
 package com.one.hotchpotch.base;
 
 
-import com.one.hotchpotch.net.ApiService;
 import com.one.hotchpotch.net.RetrofitHttp;
 import com.one.hotchpotch.net.RxManager;
 
@@ -25,7 +24,7 @@ public abstract class BasePresenter<V> {
      * @param cls Service的类对象
      * @return ApiService
      */
-    protected ApiService getService(Class<ApiService> cls) {
+    protected <S> S getService(Class<S > cls) {
         return RetrofitHttp.getInstance().createService(cls);
     }
 
@@ -35,7 +34,7 @@ public abstract class BasePresenter<V> {
      * @param url  自定义有效的url
      * @return ApiService
      */
-    protected ApiService getService(Class<ApiService> cls, String url) {
+    protected <S> S getService(Class<S > cls, String url) {
         return RetrofitHttp.getInstance().createService(cls, url);
     }
     /**
