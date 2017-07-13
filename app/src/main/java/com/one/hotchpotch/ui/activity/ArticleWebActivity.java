@@ -6,10 +6,10 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.one.base.BaseActivity;
 import com.one.hotchpotch.R;
-import com.one.hotchpotch.base.BaseActivity;
-import com.one.hotchpotch.utils.ToolbarUtils;
 import com.one.hotchpotch.widget.NumberProgressBar;
+import com.one.utils.ToolbarUtils;
 
 import butterknife.Bind;
 import rx.Observable;

@@ -14,20 +14,20 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.one.base.BaseActivity;
 import com.one.hotchpotch.R;
 import com.one.hotchpotch.adapter.PagerAdapter;
-import com.one.hotchpotch.base.BaseActivity;
 import com.one.hotchpotch.ui.fragment.ArticleFragment;
 import com.one.hotchpotch.ui.fragment.HomeFragment;
 import com.one.hotchpotch.ui.fragment.MyFragment;
 import com.one.hotchpotch.ui.fragment.PushFragment;
 import com.one.hotchpotch.ui.fragment.SettingFragment;
-import com.one.hotchpotch.utils.LogUtils;
-import com.one.utils.ToastUtils;
-import com.one.hotchpotch.utils.ToolbarUtils;
 import com.one.hotchpotch.widget.ColorFlipPagerTitleView;
 import com.one.utils.AppManager;
+import com.one.utils.LogUtils;
 import com.one.utils.PrefUtils;
+import com.one.utils.ToastUtils;
+import com.one.utils.ToolbarUtils;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;

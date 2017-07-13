@@ -1,7 +1,7 @@
 package com.one.hotchpotch.net;
 
 
-import com.one.hotchpotch.base.BaseHttpResult;
+import com.one.base.BaseHttpResult;
 import com.one.hotchpotch.bean.Articles;
 import com.one.hotchpotch.bean.User;
 

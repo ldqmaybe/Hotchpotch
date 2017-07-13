@@ -1,19 +1,12 @@
 package com.one.hotchpotch.ui.fragment;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
+import com.one.base.BaseFragment;
 import com.one.hotchpotch.R;
-import com.one.hotchpotch.base.BaseFragment;
 import com.one.hotchpotch.bean.Articles;
-import com.one.hotchpotch.contract.MyContract;
 import com.one.hotchpotch.contract.SettingContract;
-import com.one.hotchpotch.presenter.MyPresenter;
 import com.one.hotchpotch.presenter.SettingPresenter;
 
 public class SettingFragment extends BaseFragment<SettingPresenter> implements SettingContract.View {

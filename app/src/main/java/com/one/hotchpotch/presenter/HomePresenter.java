@@ -1,11 +1,11 @@
 package com.one.hotchpotch.presenter;
 
-import com.one.hotchpotch.base.BasePresenter;
+import com.one.base.BasePresenter;
 import com.one.hotchpotch.bean.Articles;
 import com.one.hotchpotch.contract.HomeContract;
 import com.one.hotchpotch.net.ApiService;
-import com.one.hotchpotch.net.RequestCallback;
 import com.one.hotchpotch.ui.fragment.HomeFragment;
+import com.one.net.RequestCallback;
 
 /**
  * Created by admin on 2017/6/27.

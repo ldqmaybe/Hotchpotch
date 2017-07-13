@@ -1,8 +1,8 @@
-package com.one.hotchpotch.net;
+package com.one.net;
 
 import android.text.TextUtils;
 
-import com.one.hotchpotch.utils.LogUtils;
+import com.one.utils.LogUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

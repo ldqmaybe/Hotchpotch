@@ -1,4 +1,4 @@
-package com.one.hotchpotch.net;
+package com.one.net;
 
 import java.net.ConnectException;
 import java.net.SocketException;

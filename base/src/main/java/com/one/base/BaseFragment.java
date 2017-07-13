@@ -1,4 +1,4 @@
-package com.one.hotchpotch.base;
+package com.one.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.one.hotchpotch.utils.HideUtil;
-import com.one.hotchpotch.utils.ToolbarUtils;
+import com.one.utils.HideUtil;
+import com.one.utils.ToolbarUtils;
 
 import butterknife.ButterKnife;
 

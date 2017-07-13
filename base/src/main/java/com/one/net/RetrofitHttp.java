@@ -1,4 +1,4 @@
-package com.one.hotchpotch.net;
+package com.one.net;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @time 2016/11/24 0024.14:23
  */
 public class RetrofitHttp {
-    private static String BASE_URL = ApiService.GAN_IO;
+    private static String BASE_URL = "http://gank.io/api/";
     private static final int DEFAULT_TIMEOUT = 5;
     private Retrofit retrofit;
 
