@@ -8,23 +8,32 @@ import android.webkit.WebViewClient;
 
 import com.one.base.BaseActivity;
 import com.one.hotchpotch.R;
+import com.one.hotchpotch.contract.ArticleWebContract;
+import com.one.hotchpotch.presenter.ArticleWebPresenter;
 import com.one.hotchpotch.widget.NumberProgressBar;
+import com.one.net.RxManager;
+import com.one.utils.LogUtils;
+import com.one.utils.ToastUtils;
 import com.one.utils.ToolbarUtils;
 
 import butterknife.Bind;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 /**
- * 文章
+ * author: LinDingQiang<br/>
+ * created on: 2017/6/27 16:01<br/>
+ * description:
  */
-public class ArticleWebActivity extends BaseActivity {
+public class ArticleWebActivity extends BaseActivity<ArticleWebPresenter> implements ArticleWebContract.View {
     @Bind(R.id.wvBoss)
     WebView wvBoss;
     @Bind(R.id.numberProgressBar)
     NumberProgressBar numberProgressBar;
+    private RxManager manager;
+
+    @Override
+    protected ArticleWebPresenter initPresenter() {
+        return new ArticleWebPresenter();
+    }
 
     @Override
     protected int setLayoutId() {
@@ -59,7 +68,7 @@ public class ArticleWebActivity extends BaseActivity {
         wvBoss.loadUrl(url);
         wvBoss.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, int newProgress) {
-                initObservable(newProgress);
+                mPresenter.getProgress(newProgress);
             }
 
         });
@@ -77,19 +86,18 @@ public class ArticleWebActivity extends BaseActivity {
         });
     }
 
-    private void initObservable(final int newProgress) {
-        Observable.just(newProgress)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Integer>() {
-                    @Override
-                    public void call(Integer integer) {
-                        numberProgressBar.setVisibility(View.VISIBLE);
-                        numberProgressBar.setProgress(integer);
-                        if (integer >= 100) {
-                            numberProgressBar.setVisibility(View.GONE);
-                        }
-                    }
-                });
+    @Override
+    public void onSuccess(Integer progress) {
+        numberProgressBar.setVisibility(View.VISIBLE);
+        numberProgressBar.setProgress(progress);
+        if (progress >= 100) {
+            numberProgressBar.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onFailure(String error) {
+        LogUtils.i(error);
+        ToastUtils.showShortToast(error);
     }
 }
