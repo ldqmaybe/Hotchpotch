@@ -1,4 +1,4 @@
-package com.one.hotchpotch.utils;
+package com.one.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

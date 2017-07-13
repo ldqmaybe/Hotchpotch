@@ -9,8 +9,8 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.one.base.BaseFragment;
 import com.one.hotchpotch.R;
-import com.one.hotchpotch.base.BaseFragment;
 import com.one.hotchpotch.bean.Articles;
 import com.one.hotchpotch.contract.ArticleContract;
 import com.one.hotchpotch.presenter.ArticlePresenter;

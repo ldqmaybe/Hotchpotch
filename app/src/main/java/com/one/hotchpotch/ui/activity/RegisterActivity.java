@@ -3,12 +3,12 @@ package com.one.hotchpotch.ui.activity;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.one.base.BaseActivity;
 import com.one.hotchpotch.R;
-import com.one.hotchpotch.base.BaseActivity;
 import com.one.hotchpotch.bean.User;
 import com.one.hotchpotch.contract.RegistContract;
 import com.one.hotchpotch.presenter.RegistPresenter;
-import com.one.hotchpotch.utils.LogUtils;
+import com.one.utils.LogUtils;
 
 import butterknife.Bind;
 import butterknife.OnClick;

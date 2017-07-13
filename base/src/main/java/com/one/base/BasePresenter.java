@@ -1,8 +1,8 @@
-package com.one.hotchpotch.base;
+package com.one.base;
 
 
-import com.one.hotchpotch.net.RetrofitHttp;
-import com.one.hotchpotch.net.RxManager;
+import com.one.net.RetrofitHttp;
+import com.one.net.RxManager;
 
 /**
  * Presenter的基类

@@ -1,8 +1,7 @@
-package com.one.hotchpotch.net;
+package com.one.net;
 
 
-
-import com.one.hotchpotch.base.BaseHttpResult;
+import com.one.base.BaseHttpResult;
 
 import rx.Observable;
 import rx.Subscriber;

@@ -1,4 +1,4 @@
-package com.one.hotchpotch.base;
+package com.one.base;
 
 /**
  * @author Admin

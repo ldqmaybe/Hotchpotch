@@ -1,4 +1,4 @@
-package com.one.hotchpotch.utils;
+package com.one.utils;
 
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import com.one.hotchpotch.R;
+import com.one.base.R;
+
 
 /**
  * author: LinDingQiang
