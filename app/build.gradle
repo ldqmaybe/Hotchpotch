@@ -32,7 +32,7 @@ dependencies {
     testCompile 'org.robolectric:robolectric:3.0'
     testCompile 'junit:junit:4.12'
 
-    compile project(':base')
+    compile project(':baselib')
     if (!isDebug.toBoolean()) {
         compile project(':login')
     }

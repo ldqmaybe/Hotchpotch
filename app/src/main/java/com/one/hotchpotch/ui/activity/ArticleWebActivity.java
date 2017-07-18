@@ -1,7 +1,10 @@
 package com.one.hotchpotch.ui.activity;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -11,7 +14,6 @@ import com.one.hotchpotch.R;
 import com.one.hotchpotch.contract.ArticleWebContract;
 import com.one.hotchpotch.presenter.ArticleWebPresenter;
 import com.one.hotchpotch.widget.NumberProgressBar;
-import com.one.net.RxManager;
 import com.one.utils.LogUtils;
 import com.one.utils.ToastUtils;
 import com.one.utils.ToolbarUtils;
@@ -28,7 +30,6 @@ public class ArticleWebActivity extends BaseActivity<ArticleWebPresenter> implem
     WebView wvBoss;
     @Bind(R.id.numberProgressBar)
     NumberProgressBar numberProgressBar;
-    private RxManager manager;
 
     @Override
     protected ArticleWebPresenter initPresenter() {
@@ -73,9 +74,11 @@ public class ArticleWebActivity extends BaseActivity<ArticleWebPresenter> implem
 
         });
         wvBoss.setWebViewClient(new WebViewClient() {
-            public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
-                view.loadUrl(url);
-                return true;
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                view.loadUrl(request.getUrl().toString());
+                return super.shouldOverrideUrlLoading(view, request);
             }
 
             @Override

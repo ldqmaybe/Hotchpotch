@@ -47,7 +47,7 @@ dependencies {
     testCompile "org.robolectric:robolectric:3.0"
     testCompile 'junit:junit:4.12'
 
-    compile project(':base')
+    compile project(':baselib')
 
     compile "com.alibaba:arouter-api:${AROUTER_API}"
     apt "com.alibaba:arouter-compiler:${AROUTER_COMPILER}"
