@@ -19,26 +19,30 @@ public abstract class BasePresenter<V> {
     }
 
     /**
-     *  无url参数方法<br>
-     *  初始化Service
+     * 无url参数方法<br>
+     * 初始化Service
+     *
      * @param cls Service的类对象
      * @return ApiService
      */
-    protected <S> S getService(Class<S > cls) {
-        return RetrofitHttp.getInstance().createService(cls);
+    protected <S> S getService(Class<S> cls) {
+        return getService(cls, null);
     }
 
     /**
-     *  有url参数方法<br>初始化Service
-     * @param cls  Service的类对象
-     * @param url  自定义有效的url
+     * 有url参数方法<br>初始化Service
+     *
+     * @param cls Service的类对象
+     * @param url 自定义有效的url
      * @return ApiService
      */
-    protected <S> S getService(Class<S > cls, String url) {
+    protected <S> S getService(Class<S> cls, String url) {
         return RetrofitHttp.getInstance().createService(cls, url);
     }
+
     /**
      * presenter与view绑定
+     *
      * @param view 要绑定的view，activity or fragment 实现了它
      */
     void attachView(V view) {

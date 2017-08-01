@@ -21,7 +21,7 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    public void onViewClicked(View v) {
+    public void loginBtnOnClick(View v) {
         ARouter.getInstance().build("/app/main").navigation();
         PrefUtils.putString("login", "Login");
     }
