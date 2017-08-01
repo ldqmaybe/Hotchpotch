@@ -8,15 +8,17 @@ import com.one.hotchpotch.ui.fragment.ArticleFragment;
 import com.one.net.RequestCallback;
 
 /**
- * Created by admin on 2017/6/27.
+ * description:
+ *
+ * @author: LinDingQiang
+ * @created on: 2017/6/27 11:30
  */
-
 public class ArticlePresenter extends BasePresenter<ArticleFragment> implements ArticleContract.Presenter {
 
     @Override
-    public void getArticles(int counts,int page) {
+    public void getArticles(int counts, int page) {
 
-        mRxManage.add(getService(ApiService.class,ApiService.GAN_IO).getArticles(counts,page), new RequestCallback<Articles>() {
+        mRxManage.add(getService(ApiService.class, ApiService.GAN_IO).getArticles(counts, page), new RequestCallback<Articles>() {
             @Override
             public void onStart() {
                 super.onStart();

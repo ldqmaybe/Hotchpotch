@@ -16,7 +16,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitHttp {
     private static String BASE_URL = "http://gank.io/api/";
     private static final int DEFAULT_TIMEOUT = 5;
-    private Retrofit retrofit;
 
     private static class SingleHolder {
         private static final RetrofitHttp INSTANCE = new RetrofitHttp();
@@ -37,28 +36,11 @@ public class RetrofitHttp {
      * @return OkHttpClient
      */
     private OkHttpClient getOkHttp() {
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+        return new OkHttpClient.Builder()
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(new LoggerInterceptor())//添加拦截器
                 .build();
-        return okHttpClient;
 
-    }
-
-    /**
-     * 无参方法<br>
-     * 初始化并且获取Retrofit，默认url为{@link #BASE_URL}
-     *
-     * @return Retrofit
-     */
-    private Retrofit getRetrfit() {
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(getOkHttp())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        return retrofit;
     }
 
     /**
@@ -72,26 +54,12 @@ public class RetrofitHttp {
         if (url != null) {
             BASE_URL = url;
         }
-        retrofit = new Retrofit.Builder()
+        return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(getOkHttp())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        return retrofit;
-    }
-
-
-    /**
-     * 无参方法<br/>
-     * 创建和获取Service接口
-     *
-     * @param serviceClass Service的类对象
-     * @param <S>          Service泛型，本项目的Service接口为AipService.class
-     * @return Service
-     */
-    public <S> S createService(Class<S> serviceClass) {
-        return getRetrfit().create(serviceClass);
     }
 
     /**
@@ -99,8 +67,8 @@ public class RetrofitHttp {
      * 创建和获取Service接口，默认url为{@link #BASE_URL}
      *
      * @param serviceClass Service的类对象
-     * @param url 自定义有效的url
-     * @param <S>  Service泛型，本项目的Service接口为AipService.class
+     * @param url          自定义有效的url
+     * @param <S>          Service泛型，本项目的Service接口为AipService.class
      * @return Service
      */
     public <S> S createService(Class<S> serviceClass, String url) {

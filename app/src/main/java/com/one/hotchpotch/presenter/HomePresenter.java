@@ -8,15 +8,17 @@ import com.one.hotchpotch.ui.fragment.HomeFragment;
 import com.one.net.RequestCallback;
 
 /**
- * Created by admin on 2017/6/27.
+ * description:
+ *
+ * @author: LinDingQiang
+ * @created on: 2017/6/27 11:26
  */
-
 public class HomePresenter extends BasePresenter<HomeFragment> implements HomeContract.Presenter {
 
     @Override
-    public void getArticles(int counts,int page) {
+    public void getArticles(int counts, int page) {
 
-        mRxManage.add(getService(ApiService.class).getArticles(counts,page), new RequestCallback<Articles>() {
+        mRxManage.add(getService(ApiService.class).getArticles(counts, page), new RequestCallback<Articles>() {
             @Override
             public void onStart() {
                 super.onStart();
