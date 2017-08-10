@@ -130,6 +130,7 @@ public class ArticleFragment extends BaseFragment<ArticlePresenter> implements A
             adapter.addData(articles.getResults());
             adapter.loadMoreComplete();
         }
+
     }
 
     @Override
