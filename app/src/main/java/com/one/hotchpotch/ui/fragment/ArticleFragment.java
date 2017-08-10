@@ -131,6 +131,7 @@ public class ArticleFragment extends BaseFragment<ArticlePresenter> implements A
             adapter.loadMoreComplete();
         }
 
+
     }
 
     @Override
