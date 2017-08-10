@@ -1,11 +1,15 @@
 package com.one.hotchpotch.presenter;
 
 import com.one.base.BasePresenter;
-import com.one.hotchpotch.bean.Articles;
+import com.one.callback.FlowableCallback;
+import com.one.callback.SchedulerUtils;
+import com.one.hotchpotch.bean.Article;
 import com.one.hotchpotch.contract.ArticleContract;
-import com.one.hotchpotch.net.ApiService;
+import com.one.hotchpotch.net.ApiHelper;
 import com.one.hotchpotch.ui.fragment.ArticleFragment;
-import com.one.net.RequestCallback;
+
+import java.util.List;
+
 
 /**
  * description:
@@ -17,29 +21,19 @@ public class ArticlePresenter extends BasePresenter<ArticleFragment> implements 
 
     @Override
     public void getArticles(int counts, int page) {
+        mRxManage.add(ApiHelper.getInstance().getArticles(counts, page)
+                .compose(SchedulerUtils.<List<Article>>flowableBaseReponse())
+                .subscribeWith(new FlowableCallback<List<Article>>() {
+                    @Override
+                    protected void onSuccess(List<Article> articles) {
+                        mView.onSuccess(articles);
+                    }
 
-        mRxManage.add(getService(ApiService.class, ApiService.GAN_IO).getArticles(counts, page), new RequestCallback<Articles>() {
-            @Override
-            public void onStart() {
-                super.onStart();
-//                mView.showDialog();
-            }
-
-            @Override
-            protected void onSuccess(Articles articles) {
-                mView.onSuccess(articles);
-            }
-
-            @Override
-            protected void onFailure(String error) {
-//                mView.dismissDialog();
-            }
-
-            @Override
-            public void onCompleted() {
-                super.onCompleted();
-//                mView.dismissDialog();
-            }
-        });
+                    @Override
+                    protected void onFailure(String error) {
+                        mView.onFailure(error);
+                    }
+                }));
     }
+
 }

@@ -1,16 +1,20 @@
 package com.one.hotchpotch.net;
 
 
+import com.one.base.BaseGankResponse;
 import com.one.base.BaseHttpResult;
-import com.one.hotchpotch.bean.Articles;
+import com.one.hotchpotch.bean.Article;
 import com.one.hotchpotch.bean.User;
 
+import java.util.List;
+
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import rx.Observable;
 
 /**
  * app接口
@@ -26,7 +30,7 @@ public interface ApiService {
 
     //    http://gank.io/api/data/Android/10/1
     @GET("data/Android/{counts}/{page}")
-    Observable<Articles> getArticles(@Path("counts") int counts, @Path("page") int page);
+    Flowable<BaseGankResponse<List<Article>>> getArticles(@Path("counts") int counts, @Path("page") int page);
 
 
     /**

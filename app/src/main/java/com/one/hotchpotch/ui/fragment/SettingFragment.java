@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.one.base.BaseFragment;
 import com.one.hotchpotch.R;
-import com.one.hotchpotch.bean.Articles;
+import com.one.hotchpotch.bean.Article;
 import com.one.hotchpotch.contract.SettingContract;
 import com.one.hotchpotch.presenter.SettingPresenter;
 
@@ -35,7 +35,7 @@ public class SettingFragment extends BaseFragment<SettingPresenter> implements S
     }
 
     @Override
-    public void onSuccess(Articles articles) {
+    public void onSuccess(Article articles) {
 
     }
 

@@ -1,14 +1,15 @@
 package com.one.hotchpotch.contract;
 
-import com.one.hotchpotch.bean.Articles;
+import com.one.hotchpotch.bean.Article;
 
 /**
- * Created by admin on 2017/6/27.
+ * description:
+ * @author: LinDingQiang
+ * @created on: 2017/6/27 17:13
  */
-
 public class PushContract {
     public interface View {
-        void onSuccess(Articles articles);
+        void onSuccess(Article articles);
 
         void onFailure(String error);
     }

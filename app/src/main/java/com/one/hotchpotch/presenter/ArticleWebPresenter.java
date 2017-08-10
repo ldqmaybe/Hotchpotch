@@ -1,11 +1,12 @@
 package com.one.hotchpotch.presenter;
 
 import com.one.base.BasePresenter;
+import com.one.callback.ObservableCallback;
+import com.one.callback.SchedulerUtils;
 import com.one.hotchpotch.contract.ArticleWebContract;
 import com.one.hotchpotch.ui.activity.ArticleWebActivity;
-import com.one.net.RequestCallback;
 
-import rx.Observable;
+import io.reactivex.Observable;
 
 /**
  * author: LinDingQiang<br/>
@@ -16,17 +17,19 @@ public class ArticleWebPresenter extends BasePresenter<ArticleWebActivity> imple
 
     @Override
     public void getProgress(int progress) {
-        mRxManage.add(Observable.just(progress), new RequestCallback<Integer>() {
+        mRxManage.add(Observable.just(progress)
+                .compose(SchedulerUtils.<Integer>obsercable())
+                .subscribeWith(new ObservableCallback<Integer>() {
+                    @Override
+                    protected void onSuccess(Integer integer) {
+                        mView.onSuccess(integer);
+                    }
 
-            @Override
-            protected void onSuccess(Integer progress) {
-                mView.onSuccess(progress);
-            }
+                    @Override
+                    protected void onFailure(String error) {
+                        mView.onFailure(error);
 
-            @Override
-            protected void onFailure(String error) {
-                mView.onFailure(error);
-            }
-        });
+                    }
+                }));
     }
 }

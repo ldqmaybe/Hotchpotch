@@ -1,25 +1,25 @@
-package com.one.net;
+package com.one.callback;
 
 import java.net.ConnectException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
-import retrofit2.adapter.rxjava.HttpException;
-import rx.Subscriber;
+import io.reactivex.subscribers.ResourceSubscriber;
+import retrofit2.HttpException;
 
 /**
  * @author Admin
  * @time 2016/7/28 0028.17:18
  */
-public abstract class RequestCallback<T> extends Subscriber<T> {
+public abstract class FlowableCallback<T> extends ResourceSubscriber<T> {
 
     protected abstract void onSuccess(T t);
 
     protected abstract void onFailure(String error);
 
     @Override
-    public void onCompleted() {
-        //完成后做的一些操作
+    public void onComplete() {
+
     }
 
     @Override
