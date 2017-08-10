@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.one.base.BaseFragment;
 import com.one.hotchpotch.R;
-import com.one.hotchpotch.bean.Articles;
+import com.one.hotchpotch.bean.Article;
 import com.one.hotchpotch.contract.HomeContract;
 import com.one.hotchpotch.presenter.HomePresenter;
 
@@ -35,7 +35,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     }
 
     @Override
-    public void onSuccess(Articles articles) {
+    public void onSuccess(Article articles) {
 
     }
 

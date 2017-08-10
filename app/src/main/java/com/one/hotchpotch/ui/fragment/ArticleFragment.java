@@ -11,11 +11,14 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.one.base.BaseFragment;
 import com.one.hotchpotch.R;
-import com.one.hotchpotch.bean.Articles;
+import com.one.hotchpotch.bean.Article;
 import com.one.hotchpotch.contract.ArticleContract;
 import com.one.hotchpotch.presenter.ArticlePresenter;
 import com.one.hotchpotch.ui.activity.ArticleWebActivity;
 import com.one.hotchpotch.widget.ArticleItemDecortion;
+import com.one.utils.ToastUtils;
+
+import java.util.List;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
@@ -92,10 +95,10 @@ public class ArticleFragment extends BaseFragment<ArticlePresenter> implements A
     }
 
     private void initAdapter() {
-        adapter = new BaseQuickAdapter<Articles.Article, BaseViewHolder>(R.layout.article_item) {
+        adapter = new BaseQuickAdapter<Article, BaseViewHolder>(R.layout.article_item) {
             @Override
-            protected void convert(BaseViewHolder helper, Articles.Article article) {
-                helper.setText(R.id.article_title, article.getDesc()).setText(R.id.article_who, "作者：" + article.getWho()).setText(R.id.article_time,"发布时间："+article.getPublishedAt().split("T")[0]);
+            protected void convert(BaseViewHolder helper, Article article) {
+                helper.setText(R.id.article_title, article.getDesc()).setText(R.id.article_who, "作者：" + article.getWho()).setText(R.id.article_time, "发布时间：" + article.getPublishedAt().split("T")[0]);
             }
         };
         recycle.setAdapter(adapter);
@@ -106,28 +109,28 @@ public class ArticleFragment extends BaseFragment<ArticlePresenter> implements A
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Articles.Article article = (Articles.Article) adapter.getData().get(position);
+                Article article = (Article) adapter.getData().get(position);
                 Intent intent = new Intent(getActivity(), ArticleWebActivity.class);
-                intent.putExtra("url",article.getUrl());
-                intent.putExtra("title",article.getDesc());
+                intent.putExtra("url", article.getUrl());
+                intent.putExtra("title", article.getDesc());
                 startActivity(intent);
             }
         });
     }
 
     @Override
-    public void onSuccess(Articles articles) {
-        if (articles == null) {
+    public void onSuccess(List<Article> articles) {
+        if (articles == null || articles.size() == 0) {
             adapter.setEmptyView(R.layout.empty);
             mPtrFrame.refreshComplete();
             return;
         }
         if (page == 1) {
-            adapter.setNewData(articles.getResults());
+            adapter.setNewData(articles);
             adapter.disableLoadMoreIfNotFullPage(recycle);
             mPtrFrame.refreshComplete();
         } else {
-            adapter.addData(articles.getResults());
+            adapter.addData(articles);
             adapter.loadMoreComplete();
         }
 
@@ -137,6 +140,7 @@ public class ArticleFragment extends BaseFragment<ArticlePresenter> implements A
     public void onFailure(String error) {
         mPtrFrame.refreshComplete();
         adapter.loadMoreComplete();
+        ToastUtils.showShortToast(error);
     }
 
     @Override

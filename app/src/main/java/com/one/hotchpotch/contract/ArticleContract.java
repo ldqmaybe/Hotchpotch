@@ -1,14 +1,17 @@
 package com.one.hotchpotch.contract;
 
-import com.one.hotchpotch.bean.Articles;
+import com.one.hotchpotch.bean.Article;
+
+import java.util.List;
 
 /**
- * Created by admin on 2017/6/27.
+ * description:
+ * @author: LinDingQiang
+ * @created on: 2017/6/27 17:12
  */
-
 public class ArticleContract {
     public interface View {
-        void onSuccess(Articles articles);
+        void onSuccess(List<Article> articles);
 
         void onFailure(String error);
     }

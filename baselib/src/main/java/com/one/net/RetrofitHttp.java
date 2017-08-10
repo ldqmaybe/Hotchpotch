@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -57,11 +57,21 @@ public class RetrofitHttp {
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(getOkHttp())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-
+    /**
+     *无参方法<br/>
+     * 创建和获取Service接口，默认url为{@link #BASE_URL}
+     *
+     * @param serviceClass Service的类对象
+     * @param <S>          Service泛型，本项目的Service接口为AipService.class
+     * @return Service
+     */
+    public <S> S createService(Class<S> serviceClass) {
+        return getRetrfit(null).create(serviceClass);
+    }
     /**
      * 有参方法<br/>
      * 创建和获取Service接口，默认url为{@link #BASE_URL}
