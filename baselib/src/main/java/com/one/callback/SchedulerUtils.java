@@ -76,8 +76,8 @@ public class SchedulerUtils {
     /**
      * 返回data数据
      *
-     * @param t
-     * @param <T>
+     * @param t 转换后的数据
+     * @param <T>  转换后的数据类型
      * @return data数据
      */
     private static <T> Observable<T> createObservableData(final T t) {
@@ -94,7 +94,7 @@ public class SchedulerUtils {
         });
     }
 
-/************************************************************Flowable************************************************************/
+//************************************************************Flowable************************************************************
 
     /**
      * Observable 线程转换,不包含BaseHttpResult
@@ -145,8 +145,8 @@ public class SchedulerUtils {
     /**
      * 返回data数据,默认背压BackpressureStrategy.BUFFER
      *
-     * @param t
-     * @param <T>
+     * @param t 转换后的数据
+     * @param <T>  转换后的数据类型
      * @return data数据
      */
     private static <T> Flowable<T> createFlowableData(final T t) {

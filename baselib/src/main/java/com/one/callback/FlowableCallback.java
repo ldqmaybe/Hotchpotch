@@ -1,11 +1,6 @@
 package com.one.callback;
 
-import java.net.ConnectException;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-
 import io.reactivex.subscribers.ResourceSubscriber;
-import retrofit2.HttpException;
 
 /**
  * @author Admin
@@ -19,7 +14,12 @@ public abstract class FlowableCallback<T> extends ResourceSubscriber<T> {
 
     @Override
     public void onComplete() {
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //网络判断
     }
 
     @Override
@@ -30,23 +30,6 @@ public abstract class FlowableCallback<T> extends ResourceSubscriber<T> {
     @Override
     public void onError(Throwable e) {
         e.printStackTrace();
-        String msg;
-        if (e instanceof UnknownHostException) {
-            msg = "无网络，请设置网络";
-        } else if (e instanceof SocketException) {
-            msg = "系统繁忙，请稍后再试";
-        } else if (e instanceof ConnectException) {
-            msg = "无法连接服务器，请检查您的网络状态";
-        } else if (e instanceof HttpException) {
-            HttpException httpException = (HttpException) e;
-            if (httpException.code() == 504) {
-                msg = "网络不给力";
-            } else {
-                msg = httpException.getMessage();
-            }
-        } else {
-            msg = e.getMessage();
-        }
-        onFailure(msg);
+        onFailure(BaseException.getErrorMsg(e));
     }
 }

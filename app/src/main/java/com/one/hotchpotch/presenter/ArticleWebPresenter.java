@@ -28,7 +28,6 @@ public class ArticleWebPresenter extends BasePresenter<ArticleWebActivity> imple
                     @Override
                     protected void onFailure(String error) {
                         mView.onFailure(error);
-
                     }
                 }));
     }
