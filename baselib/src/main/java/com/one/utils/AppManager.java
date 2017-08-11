@@ -17,7 +17,8 @@ public class AppManager {
     private static Stack<Activity> sActivityStack;
     // 静态该类对象
     private static AppManager sInstance;
-
+    private static final long WAITTIME = 2000;
+    private long touchTime = 0;
     /**
      * 将其构造私有化，确保对象唯一
      */
@@ -130,7 +131,16 @@ public class AppManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
+    public void onKeyDown() {
+        long currentTime = System.currentTimeMillis();
+        if ((currentTime - touchTime) >= WAITTIME) {
+            ToastUtils.showShortToast("再按一次退出");
+            touchTime = currentTime;
+        } else {
+            AppManager.getInstance().finishAllActivity();
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }
+    }
 }

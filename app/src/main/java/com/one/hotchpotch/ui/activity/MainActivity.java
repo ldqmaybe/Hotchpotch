@@ -26,7 +26,6 @@ import com.one.hotchpotch.widget.ColorFlipPagerTitleView;
 import com.one.utils.AppManager;
 import com.one.utils.LogUtils;
 import com.one.utils.PrefUtils;
-import com.one.utils.ToastUtils;
 import com.one.utils.ToolbarUtils;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -142,21 +141,15 @@ public class MainActivity extends BaseActivity {
         magicIndicator.setNavigator(commonNavigator7);
         ViewPagerHelper.bind(magicIndicator, viewPager);
     }
+
     private static final long WAITTIME = 2000;
     long touchTime = 0;
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // 监听返回按钮。2秒内连续点击则退出
-        if (event.getAction() == KeyEvent.ACTION_DOWN
-                && KeyEvent.KEYCODE_BACK == keyCode) {
-            long currentTime = System.currentTimeMillis();
-            if ((currentTime - touchTime) >= WAITTIME) {
-                ToastUtils.showShortToast("再按一次退出");
-                touchTime = currentTime;
-            } else {
-                AppManager.getInstance().finishAllActivity();
-                android.os.Process.killProcess(android.os.Process.myPid());
-            }
+        if (event.getAction() == KeyEvent.ACTION_DOWN && KeyEvent.KEYCODE_BACK == keyCode) {
+            AppManager.getInstance().onKeyDown();
             return true;
         }
         return super.onKeyDown(keyCode, event);
