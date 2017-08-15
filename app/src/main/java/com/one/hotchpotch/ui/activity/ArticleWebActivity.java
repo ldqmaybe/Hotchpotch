@@ -91,6 +91,7 @@ public class ArticleWebActivity extends BaseActivity<ArticleWebPresenter> implem
 
     @Override
     public void onSuccess(Integer progress) {
+
         numberProgressBar.setVisibility(View.VISIBLE);
         numberProgressBar.setProgress(progress);
         if (progress >= 100) {

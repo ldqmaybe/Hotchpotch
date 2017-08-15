@@ -1,8 +1,15 @@
 package com.one.hotchpotch.presenter;
 
 import com.one.base.BasePresenter;
+import com.one.hotchpotch.bean.Article;
 import com.one.hotchpotch.contract.MyContract;
+import com.one.hotchpotch.net.ApiHelper;
 import com.one.hotchpotch.ui.fragment.MyFragment;
+
+import io.reactivex.Observable;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.BiFunction;
+import io.reactivex.functions.Consumer;
 
 /**
  * description:
@@ -13,4 +20,21 @@ public class MyPresenter extends BasePresenter<MyFragment> implements MyContract
 
     @Override
     public void getArticles(int counts,int page) {}
+
+    public void testRxjava2Zip(){
+        Observable observable1 = ApiHelper.getInstance().test();
+        Observable observable2 = ApiHelper.getInstance().test();
+        Observable.zip(observable1, observable2, new BiFunction<Article, Article, String>() {
+            @Override
+            public String apply(@NonNull Article mobileAddress, @NonNull Article categoryResult) throws Exception {
+                return "合并后的数据为：手机归属地：";
+            }
+        })
+        .subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String o) throws Exception {
+
+            }
+        });
+    }
 }

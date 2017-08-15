@@ -30,8 +30,9 @@ public interface ApiService {
 
     //    http://gank.io/api/data/Android/10/1
     @GET("data/Android/{counts}/{page}")
-    Flowable<BaseGankResponse<List<Article>>> getArticles(@Path("counts") int counts, @Path("page") int page);
-
+    Flowable<BaseGankResponse<List<Article>>> getArticlesFlowable(@Path("counts") int counts, @Path("page") int page);
+    @GET("data/Android/{counts}/{page}")
+    Observable<BaseGankResponse<List<Article>>> getArticlesObservable(@Path("counts") int counts, @Path("page") int page);
 
     /**
      * 自己搭建服务器的接口

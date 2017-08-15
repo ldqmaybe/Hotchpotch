@@ -5,6 +5,7 @@ import com.one.callback.ObservableCallback;
 import com.one.callback.SchedulerUtils;
 import com.one.hotchpotch.contract.ArticleWebContract;
 import com.one.hotchpotch.ui.activity.ArticleWebActivity;
+import com.one.utils.LogUtils;
 
 import io.reactivex.Observable;
 
@@ -18,10 +19,15 @@ public class ArticleWebPresenter extends BasePresenter<ArticleWebActivity> imple
     @Override
     public void getProgress(int progress) {
         mRxManage.add(Observable.just(progress)
-                .compose(SchedulerUtils.<Integer>obsercable())
+                .compose(SchedulerUtils.<Integer>observable())
                 .subscribeWith(new ObservableCallback<Integer>() {
                     @Override
                     protected void onSuccess(Integer integer) {
+                        if (null == mView || mView.isDestroyed()) {
+                            LogUtils.i("tag", "view is destroyed");
+                            return;
+                        }
+                        LogUtils.i("tag", mView.isDestroyed() + "");
                         mView.onSuccess(integer);
                     }
 

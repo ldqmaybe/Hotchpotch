@@ -21,19 +21,23 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * description:
+ * <p> description: </p>
+ * 1、支持ObservableTransformer、FlowableTransformer进行线程转换<br/>
+ * 2、支持map,flatMap对数据进行变换<br/>
+ * 3、支持背压
  *
  * @author: LinDingQiang
  * @created on: 2017/8/9 15:50
  */
 public class SchedulerUtils {
     /**
+     * <p><b>该方法不支持背压,只是单纯的线程转换<b/></p>
      * Observable 线程转换,不包含BaseHttpResult
      *
      * @param <T> 数据源
      * @return ObservableTransformer类型
      */
-    public static <T> ObservableTransformer<T, T> obsercable() {
+    public static <T> ObservableTransformer<T, T> observable() {
         return new ObservableTransformer<T, T>() {
             @Override
             public ObservableSource<T> apply(Observable<T> upstream) {
@@ -44,8 +48,37 @@ public class SchedulerUtils {
     }
 
     /**
-     * 线程转换+
-     * 在BaseHttpResult的情况下，将BaseHttpResult类型转换成T类型
+     * <p><b>map方式,该方法不支持背压<b/></p>
+     * 线程转换+ 在BaseHttpResult的情况下，将BaseHttpResult类型转换成T类型
+     *
+     * @param <T> data数据源
+     * @return ObservableTransformer
+     */
+    public static <T> ObservableTransformer<BaseGankResponse<T>, T> observableMapBaseResponse() {
+        return new ObservableTransformer<BaseGankResponse<T>, T>() {
+            @Override
+            public ObservableSource<T> apply(@NonNull Observable<BaseGankResponse<T>> upstream) {
+                return upstream
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .map(new Function<BaseGankResponse<T>, T>() {
+                            @Override
+                            public T apply(@NonNull BaseGankResponse<T> result) throws Exception {
+                                if (!result.isError()) {
+                                    //服务器不正确返回
+                                    new RuntimeException("error");
+                                }
+                                //服务器正确返回
+                                return result.getResults();
+                            }
+                        });
+            }
+        };
+    }
+
+    /**
+     * <p><b>flatMap方式,该方法不支持背压<b/></p>
+     * 线程转换+ 在BaseHttpResult的情况下，将BaseHttpResult类型转换成T类型
      *
      * @param <T> data数据源
      * @return ObservableTransformer
@@ -76,8 +109,8 @@ public class SchedulerUtils {
     /**
      * 返回data数据
      *
-     * @param t 转换后的数据
-     * @param <T>  转换后的数据类型
+     * @param t   转换后的数据
+     * @param <T> 转换后的数据类型
      * @return data数据
      */
     private static <T> Observable<T> createObservableData(final T t) {
@@ -97,7 +130,8 @@ public class SchedulerUtils {
 //************************************************************Flowable************************************************************
 
     /**
-     * Observable 线程转换,不包含BaseHttpResult
+     * <p><b>该方法支持背压<b/></p>
+     * Flowable 线程转换,不包含BaseHttpResult
      *
      * @param <T> 数据源
      * @return FlowableTransformer类型
@@ -113,13 +147,45 @@ public class SchedulerUtils {
     }
 
     /**
-     * 线程转换+
-     * 在BaseHttpResult的情况下，将BaseHttpResult类型转换成T类型
+     * <p><b>map方式,，该方法支持背压<b/></p>
+     * <p>
+     * 线程转换+ 在BaseGankResponse的情况下，将BaseGankResponse类型转换成T类型
      *
      * @param <T> data数据源
-     * @return ObservableTransformer
+     * @return FlowableTransformer
      */
-    public static <T> FlowableTransformer<BaseGankResponse<T>, T> flowableBaseReponse() {
+    public static <T> FlowableTransformer<BaseGankResponse<T>, T> flowableMapBaseResponse() {
+        return new FlowableTransformer<BaseGankResponse<T>, T>() {
+            @Override
+            public Publisher<T> apply(@NonNull Flowable<BaseGankResponse<T>> upstream) {
+                return upstream
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .map(new Function<BaseGankResponse<T>, T>() {
+                            @Override
+                            public T apply(@NonNull BaseGankResponse<T> result) throws Exception {
+                                if (!result.isError()) {
+                                    //服务器不正确返回
+                                    new RuntimeException("error");
+                                }
+                                //服务器正确返回
+                                return result.getResults();
+                            }
+                        });
+
+            }
+        };
+    }
+
+    /**
+     * <p><b>flatMap方式,，该方法支持背压<b/></p>
+     * <p>
+     * 线程转换+ 在BaseHttpResult的情况下，将BaseHttpResult类型转换成T类型
+     *
+     * @param <T> data数据源
+     * @return FlowableTransformer
+     */
+    public static <T> FlowableTransformer<BaseGankResponse<T>, T> flowableBaseResponse() {
         return new FlowableTransformer<BaseGankResponse<T>, T>() {
             @Override
             public Publisher<T> apply(@NonNull Flowable<BaseGankResponse<T>> upstream) {
@@ -145,8 +211,8 @@ public class SchedulerUtils {
     /**
      * 返回data数据,默认背压BackpressureStrategy.BUFFER
      *
-     * @param t 转换后的数据
-     * @param <T>  转换后的数据类型
+     * @param t   转换后的数据
+     * @param <T> 转换后的数据类型
      * @return data数据
      */
     private static <T> Flowable<T> createFlowableData(final T t) {

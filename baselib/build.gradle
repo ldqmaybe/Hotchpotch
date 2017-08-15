@@ -44,4 +44,6 @@ dependencies {
     compile "com.alibaba:arouter-api:${AROUTER_API}"
     apt "com.alibaba:arouter-compiler:${AROUTER_COMPILER}"
 
+    compile "com.tencent.bugly:crashreport:${BUGLY_CRASH}"
+
 }

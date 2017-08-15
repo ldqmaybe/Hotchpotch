@@ -33,11 +33,17 @@ public class ApiHelper {
         static final ApiHelper INSTANCE = new ApiHelper();
     }
 
-    public Flowable<BaseGankResponse<List<Article>>> getArticles(int i, int j) {
-        return retrofitHttp.createService(ApiService.class, ApiService.GAN_IO).getArticles(i, j);
+    public Flowable<BaseGankResponse<List<Article>>> getArticlesFlowable(int i, int j) {
+        return retrofitHttp.createService(ApiService.class, ApiService.GAN_IO).getArticlesFlowable(i, j);
+    }
+    public Observable<BaseGankResponse<List<Article>>> getArticlesObservable(int i, int j) {
+        return retrofitHttp.createService(ApiService.class, ApiService.GAN_IO).getArticlesObservable(i, j);
     }
 
     public Observable<BaseHttpResult<User>> register(String name, String pwd) {
         return retrofitHttp.createService(ApiService.class).register(name, pwd);
+    }
+    public Observable<Article> test() {
+        return null;
     }
 }
