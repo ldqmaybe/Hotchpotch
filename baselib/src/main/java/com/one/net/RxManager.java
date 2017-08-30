@@ -11,7 +11,7 @@ import io.reactivex.disposables.Disposable;
  * @time 2016/7/28 14:40
  */
 public class RxManager {
-    protected CompositeDisposable mCompositeDisposable;
+    private CompositeDisposable mCompositeDisposable;
 
     /**
      * 没有BaseEntity的情况下

@@ -32,7 +32,7 @@ public class ArticleFragment extends BaseFragment<ArticlePresenter> implements A
     private PtrClassicFrameLayout mPtrFrame;
     private RecyclerView recycle;
     private View view;
-    private BaseQuickAdapter adapter;
+    private BaseQuickAdapter<Article, BaseViewHolder> adapter;
     /**
      * 一次加载多少
      */
@@ -135,28 +135,23 @@ public class ArticleFragment extends BaseFragment<ArticlePresenter> implements A
             adapter.addData(articles);
             adapter.loadMoreComplete();
         }
-
+        page++;
     }
 
     @Override
     public void onFailure(String error) {
         mPtrFrame.refreshComplete();
-        adapter.loadMoreComplete();
+        adapter.loadMoreFail();
         ToastUtils.showShortToast(error);
     }
 
     @Override
     public void onLoadMoreRequested() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (adapter.getData().size() < PAGE_SIZE) {
-                    adapter.loadMoreEnd(true);
-                } else {
-                    page++;
-                    mPresenter.getArticles(counts, page);
-                }
-            }
-        }, 1000);
+        mPtrFrame.refreshComplete();
+        if (adapter.getData().size() < PAGE_SIZE) {
+            adapter.loadMoreEnd(true);
+        } else {
+            mPresenter.getArticles(counts, page);
+        }
     }
 }
