@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:elevation="4dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <com.one.domain.widget.NavItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:nav_icon="@mipmap/ic_nav_item_home"
+            app:nav_icon_selected="@mipmap/ic_nav_item_home_selected"
+            app:nav_text_size="10sp"
+            app:nav_text="@string/index"/>
+        <com.one.domain.widget.NavItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:nav_icon="@mipmap/ic_nav_item_shoukuan"
+            app:nav_icon_selected="@mipmap/ic_nav_item_shoukuan_selected"
+            app:nav_text_size="10sp"
+            app:nav_text="@string/shoukuan"/>
+        <com.one.domain.widget.NavItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:nav_icon="@mipmap/ic_nav_item_money"
+            app:nav_icon_selected="@mipmap/ic_nav_item_money_selected"
+            app:nav_text_size="10sp"
+            app:nav_text="@string/jinRong"/>
+        <com.one.domain.widget.NavItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:nav_icon="@mipmap/ic_nav_item_my"
+            app:nav_icon_selected="@mipmap/ic_nav_item_my_selected"
+            app:nav_text_size="10sp"
+            app:nav_text="@string/my"/>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom" />
+</RelativeLayout>
