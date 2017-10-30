@@ -5,7 +5,7 @@ import com.one.callback.ObservableCallback;
 import com.one.callback.SchedulerUtils;
 import com.one.hotchpotch.bean.Article;
 import com.one.hotchpotch.contract.ArticleContract;
-import com.one.hotchpotch.net.ApiHelper;
+import com.one.hotchpotch.net.ApiService;
 import com.one.hotchpotch.ui.fragment.ArticleFragment;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class ArticlePresenter extends BasePresenter<ArticleFragment> implements 
 
     @Override
     public void getArticles(int counts, int page) {
-        mRxManage.add(ApiHelper.getInstance().getArticlesObservable(counts, page)
+        mRxManage.add(getService(ApiService.class).getArticlesObservable(counts, page)
                 .compose(SchedulerUtils.<List<Article>>observableMapBaseResponse())
                 .subscribeWith(new ObservableCallback<List<Article>>() {
                     @Override
@@ -34,7 +34,7 @@ public class ArticlePresenter extends BasePresenter<ArticleFragment> implements 
                         mView.onFailure(error);
                     }
                 }));
-//        mRxManage.add(ApiHelper.getInstance().getArticlesFlowable(counts, page)
+//        mRxManage.add(getService(ApiService.class).getArticlesFlowable(counts, page)
 //                .compose(SchedulerUtils.<List<Article>>flowableBaseResponse())
 //                .subscribeWith(new FlowableCallback<List<Article>>() {
 //                    @Override

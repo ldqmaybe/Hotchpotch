@@ -42,4 +42,6 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("LoginServlet")
     Observable<BaseHttpResult<User>> register(@Field("username") String username, @Field("password") String password);
+
+    Observable<Article> test();
 }

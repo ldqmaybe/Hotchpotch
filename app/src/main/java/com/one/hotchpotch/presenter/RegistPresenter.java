@@ -5,7 +5,7 @@ import com.one.callback.ObservableCallback;
 import com.one.callback.SchedulerUtils;
 import com.one.hotchpotch.bean.User;
 import com.one.hotchpotch.contract.RegistContract;
-import com.one.hotchpotch.net.ApiHelper;
+import com.one.hotchpotch.net.ApiService;
 import com.one.hotchpotch.ui.activity.RegisterActivity;
 
 /**
@@ -16,7 +16,7 @@ import com.one.hotchpotch.ui.activity.RegisterActivity;
 public class RegistPresenter extends BasePresenter<RegisterActivity> implements RegistContract.Presenter {
     @Override
     public void regist(String name, String pwd) {
-        mRxManage.add(ApiHelper.getInstance().register(name, pwd)
+        mRxManage.add(getService(ApiService.class).register(name, pwd)
                 .compose(SchedulerUtils.<User>observableBaseResponse())
                 .subscribeWith(new ObservableCallback<User>() {
                     @Override

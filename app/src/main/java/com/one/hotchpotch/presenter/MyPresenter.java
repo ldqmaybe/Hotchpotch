@@ -3,7 +3,7 @@ package com.one.hotchpotch.presenter;
 import com.one.base.BasePresenter;
 import com.one.hotchpotch.bean.Article;
 import com.one.hotchpotch.contract.MyContract;
-import com.one.hotchpotch.net.ApiHelper;
+import com.one.hotchpotch.net.ApiService;
 import com.one.hotchpotch.ui.fragment.MyFragment;
 
 import io.reactivex.Observable;
@@ -22,8 +22,8 @@ public class MyPresenter extends BasePresenter<MyFragment> implements MyContract
     public void getArticles(int counts,int page) {}
 
     public void testRxjava2Zip(){
-        Observable observable1 = ApiHelper.getInstance().test();
-        Observable observable2 = ApiHelper.getInstance().test();
+        Observable observable1 = getService(ApiService.class).test();
+        Observable observable2 = getService(ApiService.class).test();
         Observable.zip(observable1, observable2, new BiFunction<Article, Article, String>() {
             @Override
             public String apply(@NonNull Article mobileAddress, @NonNull Article categoryResult) throws Exception {
