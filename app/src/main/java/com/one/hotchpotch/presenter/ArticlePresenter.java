@@ -21,7 +21,7 @@ public class ArticlePresenter extends BasePresenter<ArticleFragment> implements 
 
     @Override
     public void getArticles(int counts, int page) {
-        mRxManage.add(getService(ApiService.class).getArticlesObservable(counts, page)
+        mRxManage.add(getService(ApiService.class,ApiService.GAN_IO).getArticlesObservable(counts, page)
                 .compose(SchedulerUtils.<List<Article>>observableMapBaseResponse())
                 .subscribeWith(new ObservableCallback<List<Article>>() {
                     @Override

@@ -93,12 +93,12 @@ public class SchedulerUtils {
                         .flatMap(new Function<BaseHttpResult<T>, ObservableSource<T>>() {
                             @Override
                             public ObservableSource<T> apply(@NonNull BaseHttpResult<T> result) throws Exception {
-                                if (result.getCode() == 0) {
+                                if (result.getStatus() == 1000) {
                                     //服务器正确返回
                                     return createObservableData(result.getData());
                                 } else {
                                     //服务器不正确返回
-                                    return Observable.error(new Exception(result.getMsg()));
+                                    return Observable.error(new Exception(result.getDesc()));
                                 }
                             }
                         });

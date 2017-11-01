@@ -37,7 +37,6 @@ public interface ApiService {
     /**
      * 自己搭建服务器的接口
      */
-    String HOTCHPOTCH_URL = "http://192.168.199.217:9080/Hotchpotch/";
 
     @FormUrlEncoded
     @POST("LoginServlet")

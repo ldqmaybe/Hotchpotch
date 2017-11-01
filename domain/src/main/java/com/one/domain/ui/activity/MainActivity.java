@@ -5,7 +5,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.one.base.BaseActivity;
 import com.one.domain.R;
 import com.one.domain.ui.fragment.FinancialFragment;
@@ -15,7 +14,6 @@ import com.one.domain.ui.fragment.MyFragment;
 import com.one.domain.ui.fragment.ShouKuanFragment;
 import com.one.domain.widget.NavItem;
 
-@Route(path = "/app/domain")
 public class MainActivity extends BaseActivity {
     private Fragment[] fragments;
     private ViewPager mViewPager;

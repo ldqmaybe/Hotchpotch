@@ -4,7 +4,6 @@ import android.widget.Button;
 
 import com.one.hotchpotch.BuildConfig;
 import com.one.hotchpotch.R;
-import com.one.hotchpotch.ui.activity.RegisterActivity;
 
 import org.junit.Before;
 import org.junit.Test;

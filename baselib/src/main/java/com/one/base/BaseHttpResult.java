@@ -5,20 +5,20 @@ package com.one.base;
  * @time 2016/11/24 0024.14:16
  */
 public class BaseHttpResult<T> {
-    private int code;
-    private String msg;
+    private int status;
+    private String desc;
     private T data;
-    public int getCode() {
-        return code;
+    public int getStatus() {
+        return status;
     }
-    public void setCode(int code) {
-        this.code = code;
+    public void setStatus(int status) {
+        this.status = status;
     }
-    public String getMsg() {
-        return msg;
+    public String getDesc() {
+        return desc;
     }
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
     public T getData() {
         return data;
