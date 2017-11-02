@@ -54,7 +54,6 @@ public class ArticleWebActivity extends BaseActivity<ArticleWebPresenter> implem
         });
 
         WebSettings setting = wvBoss.getSettings();
-        setting.setJavaScriptEnabled(true);
         // 注册javascript对象，local_obj用于javascript调用
         //webView.addJavascriptInterface(new InJavaScriptLocalObj(), "local_obj");
         setting.setDomStorageEnabled(true);// 开启webview的DOM Storage数据存储

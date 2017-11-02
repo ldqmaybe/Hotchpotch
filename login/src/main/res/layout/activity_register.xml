@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_phone"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:hint="@string/hint_user_name"
+        android:layout_marginTop="27dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_40">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/reg_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:drawablePadding="@dimen/dp_40"
+            android:drawableStart="@mipmap/ic_username"
+            android:gravity="center_vertical"
+            android:imeOptions="actionNext"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:textSize="@dimen/sp_13" />
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@color/dividingLineColor" />
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:hint="@string/input_login_password"
+        android:paddingLeft="@dimen/dp_40">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/reg_user_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/ic_password"
+            android:drawablePadding="@dimen/dp_40"
+            android:gravity="center_vertical"
+            android:inputType="textPassword"
+            android:maxLength="24"
+            android:maxLines="1"
+            android:textSize="@dimen/sp_13" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_user_reg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_46"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginRight="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_86"
+        android:background="@drawable/blue_yuanjiao_btn_bg"
+        android:text="@string/register"
+        android:textColor="@color/white" />
+</LinearLayout>
