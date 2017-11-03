@@ -29,13 +29,13 @@ public class PushPresenter extends BasePresenter<PushFragment> implements PushCo
     public void getArticles(int counts, int page) {
     }
     public void testRxjava2FlatMap(){
-        mRxManage.add(getService(ApiService.class).getArticlesObservable(1, 2)//第一次网络请求，比如注册
+        mRxManage.add(mRetrofit.createService(ApiService.class).getArticlesObservable(1, 2)//第一次网络请求，比如注册
                 .compose(SchedulerUtils.<BaseGankResponse<List<Article>>>observable())
                 .flatMap(new Function<BaseGankResponse<List<Article>>, ObservableSource<Article>>() {//使用flatMap发射第二次请求，去登录
                     @Override
                     public ObservableSource<Article> apply(@NonNull BaseGankResponse<List<Article>> articleList) throws Exception {
                         if (true) {
-                            return getService(ApiService.class).test();//第二次请求，比如去登录
+                            return mRetrofit.createService(ApiService.class).test();//第二次请求，比如去登录
                         } else {
                             mView.onFailure("error");
                             return null;

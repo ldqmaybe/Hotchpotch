@@ -22,8 +22,8 @@ public class MyPresenter extends BasePresenter<MyFragment> implements MyContract
     public void getArticles(int counts,int page) {}
 
     public void testRxjava2Zip(){
-        Observable observable1 = getService(ApiService.class).test();
-        Observable observable2 = getService(ApiService.class).test();
+        Observable observable1 = mRetrofit.createService(ApiService.class).test();
+        Observable observable2 = mRetrofit.createService(ApiService.class).test();
         Observable.zip(observable1, observable2, new BiFunction<Article, Article, String>() {
             @Override
             public String apply(@NonNull Article mobileAddress, @NonNull Article categoryResult) throws Exception {

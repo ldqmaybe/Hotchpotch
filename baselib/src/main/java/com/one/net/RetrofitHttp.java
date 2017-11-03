@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @time 2016/11/24 0024.14:23
  */
 public class RetrofitHttp {
-    private static String BASE_URL = "http://gank.io/api/";
+    private static String BASE_URL;
     private static final int DEFAULT_TIMEOUT = 5;
 
     private static class SingleHolder {
@@ -51,6 +51,7 @@ public class RetrofitHttp {
      * @return Retrofit
      */
     private Retrofit getRetrfit(String url) {
+        BASE_URL = "http://gank.io/api/";
         if (url != null) {
             BASE_URL = url;
         }

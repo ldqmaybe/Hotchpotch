@@ -20,7 +20,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
     public void login(String username, String password) {
         password = SafeUtil.shortMD5(password);
         LogUtils.i(password);
-        mRxManage.add(getService(LoginApi.class, LoginApi.HOTCH_URL).login(username, password)
+        mRxManage.add(mRetrofit.createService(LoginApi.class, LoginApi.HOTCH_URL).login(username, password)
                 .compose(SchedulerUtils.<User>observableBaseResponse())
                 .subscribeWith(new ObservableCallback<User>() {
                     @Override

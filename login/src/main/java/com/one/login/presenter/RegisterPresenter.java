@@ -28,7 +28,7 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> implement
             mView.onFailure("请输入6~18位密码");
             return;
         }
-        mRxManage.add(getService(LoginApi.class, LoginApi.HOTCH_URL).register(username, password)
+        mRxManage.add(mRetrofit.createService(LoginApi.class, LoginApi.HOTCH_URL).register(username, password)
                 .compose(SchedulerUtils.<User>observableBaseResponse()).subscribeWith(new ObservableCallback<User>() {
                     @Override
                     protected void onSuccess(User user) {

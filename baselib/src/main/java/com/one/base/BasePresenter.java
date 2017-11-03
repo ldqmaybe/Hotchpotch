@@ -13,31 +13,11 @@ import com.one.net.RxManager;
 public abstract class BasePresenter<V> {
     public V mView;
     protected RxManager mRxManage;
+    protected RetrofitHttp mRetrofit;
 
     public BasePresenter() {
         this.mRxManage = new RxManager();
-    }
-
-    /**
-     * 无url参数方法<br>
-     * 初始化Service
-     *
-     * @param cls Service的类对象
-     * @return ApiService
-     */
-    protected <S> S getService(Class<S> cls) {
-        return getService(cls, null);
-    }
-
-    /**
-     * 有url参数方法<br>初始化Service
-     *
-     * @param cls Service的类对象
-     * @param url 自定义有效的url
-     * @return ApiService
-     */
-    protected <S> S getService(Class<S> cls, String url) {
-        return RetrofitHttp.getInstance().createService(cls, url);
+        this.mRetrofit = RetrofitHttp.getInstance();
     }
 
     /**
