@@ -23,15 +23,21 @@ public class ArticlePresenter extends BasePresenter<ArticleFragment> implements 
     public void getArticles(int counts, int page) {
         mRxManage.add(mRetrofit.createService(ApiService.class).getArticlesObservable(counts, page)
                 .compose(SchedulerUtils.<List<Article>>observableMapBaseResponse())
-                .subscribeWith(new ObservableCallback<List<Article>>() {
+                .subscribeWith(new ObservableCallback<List<Article>>(mView.getActivity()) {
                     @Override
-                    protected void onSuccess(List<Article> articles) {
+                    protected void onStart() {
+                        super.onStart();
+                    }
+
+                    @Override
+                    public void onSuccess(List<Article> articles) {
                         mView.onSuccess(articles);
                     }
 
                     @Override
-                    protected void onFailure(String error) {
-                        mView.onFailure(error);
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        mView.onFailure(e);
                     }
                 }));
 //        mRxManage.add(getService(ApiService.class).getArticlesFlowable(counts, page)

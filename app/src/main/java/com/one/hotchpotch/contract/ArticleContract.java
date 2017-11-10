@@ -13,7 +13,7 @@ public class ArticleContract {
     public interface View {
         void onSuccess(List<Article> articles);
 
-        void onFailure(String error);
+        void onFailure(Throwable e);
     }
 
     public interface Presenter {

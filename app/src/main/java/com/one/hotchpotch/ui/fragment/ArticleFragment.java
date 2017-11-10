@@ -16,7 +16,6 @@ import com.one.hotchpotch.contract.ArticleContract;
 import com.one.hotchpotch.presenter.ArticlePresenter;
 import com.one.hotchpotch.ui.activity.ArticleWebActivity;
 import com.one.hotchpotch.widget.ArticleItemDecortion;
-import com.one.utils.ToastUtils;
 
 import java.util.List;
 
@@ -83,13 +82,13 @@ public class ArticleFragment extends BaseFragment<ArticlePresenter> implements A
 
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-                new Handler().postDelayed(new Runnable() {
+                new Handler().post(new Runnable() {
                     @Override
                     public void run() {
                         page = 1;
                         mPresenter.getArticles(counts, page);
                     }
-                }, 1000);
+                });
             }
         });
     }
@@ -139,10 +138,9 @@ public class ArticleFragment extends BaseFragment<ArticlePresenter> implements A
     }
 
     @Override
-    public void onFailure(String error) {
+    public void onFailure(Throwable error) {
         mPtrFrame.refreshComplete();
         adapter.loadMoreFail();
-        ToastUtils.showShortToast(error);
     }
 
     @Override

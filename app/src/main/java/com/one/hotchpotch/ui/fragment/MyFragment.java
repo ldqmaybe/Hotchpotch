@@ -40,7 +40,7 @@ public class MyFragment extends BaseFragment<MyPresenter> implements MyContract.
     }
 
     @Override
-    public void onFailure(String error) {
+    public void onFailure(Throwable error) {
 
     }
 

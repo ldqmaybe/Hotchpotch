@@ -12,8 +12,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.one.base.BaseActivity;
 import com.one.hotchpotch.R;
 import com.one.hotchpotch.adapter.PagerAdapter;
@@ -43,6 +45,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 @Route(path = "/app/main")
 public class MainActivity extends BaseActivity {
@@ -55,6 +58,8 @@ public class MainActivity extends BaseActivity {
     Toolbar toolbar;
     @Bind(R.id.drawer_layout)
     DrawerLayout drawer;
+    @Bind(R.id.iv_header)
+    ImageView ivHeader;
 
     private static final String[] CHANNELS = new String[]{"文章", "DONUT", "ECLAIR", "GINGERBREAD", "HONEYCOMB"};
     private List<String> mDataList = Arrays.asList(CHANNELS);
@@ -153,5 +158,18 @@ public class MainActivity extends BaseActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @OnClick({R.id.iv_header})
+    public void click(View view) {
+        int viewId = view.getId();
+        switch (viewId) {
+            case R.id.iv_header:
+                ARouter.getInstance().build("/module/login").navigation();
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 }

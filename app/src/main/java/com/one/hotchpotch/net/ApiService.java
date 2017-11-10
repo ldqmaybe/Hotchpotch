@@ -42,5 +42,5 @@ public interface ApiService {
     @POST("LoginServlet")
     Observable<BaseHttpResult<User>> register(@Field("username") String username, @Field("password") String password);
 
-    Observable<Article> test();
+    Observable<BaseGankResponse<List<Article>>>test();
 }

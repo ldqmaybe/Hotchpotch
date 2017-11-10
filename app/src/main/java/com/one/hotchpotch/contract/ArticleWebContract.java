@@ -9,7 +9,7 @@ public class ArticleWebContract {
     public interface View {
         void onSuccess(Integer progress);
 
-        void onFailure(String error);
+        void onFailure(Throwable e);
     }
 
     public interface Presenter {

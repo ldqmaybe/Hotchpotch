@@ -14,8 +14,6 @@ import com.one.hotchpotch.R;
 import com.one.hotchpotch.contract.ArticleWebContract;
 import com.one.hotchpotch.presenter.ArticleWebPresenter;
 import com.one.hotchpotch.widget.NumberProgressBar;
-import com.one.utils.LogUtils;
-import com.one.utils.ToastUtils;
 import com.one.utils.ToolbarUtils;
 
 import butterknife.Bind;
@@ -99,8 +97,7 @@ public class ArticleWebActivity extends BaseActivity<ArticleWebPresenter> implem
     }
 
     @Override
-    public void onFailure(String error) {
-        LogUtils.i(error);
-        ToastUtils.showShortToast(error);
+    public void onFailure(Throwable e) {
+
     }
 }

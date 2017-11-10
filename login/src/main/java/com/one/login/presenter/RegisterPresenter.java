@@ -29,17 +29,13 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> implement
             return;
         }
         mRxManage.add(mRetrofit.createService(LoginApi.class, LoginApi.HOTCH_URL).register(username, password)
-                .compose(SchedulerUtils.<User>observableBaseResponse()).subscribeWith(new ObservableCallback<User>() {
+                .compose(SchedulerUtils.<User>observableBaseResponse()).subscribeWith(new ObservableCallback<User>(mView) {
                     @Override
-                    protected void onSuccess(User user) {
+                    public void onSuccess(User user) {
                         mView.onSuccess(user);
-                    }
-
-                    @Override
-                    protected void onFailure(String error) {
-                        mView.onFailure(error);
                     }
                 })
         );
+
     }
 }

@@ -11,7 +11,7 @@ public class MyContract {
     public interface View {
         void onSuccess(Article articles);
 
-        void onFailure(String error);
+        void onFailure(Throwable e);
     }
 
     public interface Presenter {

@@ -2,6 +2,7 @@ package com.one.net;
 
 import android.text.TextUtils;
 
+import com.one.exception.ApiErrorHelper;
 import com.one.utils.LogUtils;
 
 import java.io.IOException;
@@ -49,7 +50,7 @@ class LoggerInterceptor implements Interceptor {
             response = chain.proceed(request);
             printResponseLog(response);
         } catch (SocketTimeoutException e) {
-            e.printStackTrace();
+            ApiErrorHelper.handleCommonError(e);
         }
         return response;
     }

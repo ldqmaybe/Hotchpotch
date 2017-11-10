@@ -46,4 +46,6 @@ dependencies {
 
     compile "com.tencent.bugly:crashreport:${BUGLY_CRASH}"
 
+    compile 'com.kaopiz:kprogresshud:1.0.2'
+
 }

@@ -40,7 +40,7 @@ public class PushFragment extends BaseFragment<PushPresenter> implements PushCon
     }
 
     @Override
-    public void onFailure(String error) {
+    public void onFailure(Throwable error) {
 
     }
 

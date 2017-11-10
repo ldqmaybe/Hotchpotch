@@ -22,7 +22,7 @@ public class ArticleWebPresenter extends BasePresenter<ArticleWebActivity> imple
                 .compose(SchedulerUtils.<Integer>observable())
                 .subscribeWith(new ObservableCallback<Integer>() {
                     @Override
-                    protected void onSuccess(Integer integer) {
+                    public void onSuccess(Integer integer) {
                         if (null == mView || mView.isDestroyed()) {
                             LogUtils.i("tag", "view is destroyed");
                             return;
@@ -32,8 +32,9 @@ public class ArticleWebPresenter extends BasePresenter<ArticleWebActivity> imple
                     }
 
                     @Override
-                    protected void onFailure(String error) {
-                        mView.onFailure(error);
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        mView.onFailure(e);
                     }
                 }));
     }

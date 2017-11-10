@@ -2,6 +2,7 @@ package com.one.callback;
 
 import com.one.base.BaseGankResponse;
 import com.one.base.BaseHttpResult;
+import com.one.exception.MyException;
 
 import org.reactivestreams.Publisher;
 
@@ -93,12 +94,16 @@ public class SchedulerUtils {
                         .flatMap(new Function<BaseHttpResult<T>, ObservableSource<T>>() {
                             @Override
                             public ObservableSource<T> apply(@NonNull BaseHttpResult<T> result) throws Exception {
-                                if (result.getStatus() == 1000) {
+                                int resultCode = result.getStatus();
+                                if (resultCode == 1000) {
                                     //服务器正确返回
                                     return createObservableData(result.getData());
-                                } else {
+                                } else if (resultCode==1002){
                                     //服务器不正确返回
-                                    return Observable.error(new Exception(result.getDesc()));
+                                    return Observable.error(new MyException(result.getDesc()));
+                                }else {
+                                    //未知错误
+                                    return Observable.error(new MyException("未知错误"));
                                 }
                             }
                         });
@@ -164,15 +169,15 @@ public class SchedulerUtils {
                         .map(new Function<BaseGankResponse<T>, T>() {
                             @Override
                             public T apply(@NonNull BaseGankResponse<T> result) throws Exception {
-                                if (!result.isError()) {
-                                    //服务器不正确返回
-                                    new RuntimeException("error");
+                                if (result.isError()) {
+                                    //服务器返回不正确
+                                    return (T) Flowable.error(new MyException("服务器返回不正确"));
+                                } else {
+                                    //服务器正确返回
+                                    return result.getResults();
                                 }
-                                //服务器正确返回
-                                return result.getResults();
                             }
                         });
-
             }
         };
     }
@@ -196,8 +201,8 @@ public class SchedulerUtils {
                             @Override
                             public Publisher<T> apply(@NonNull BaseGankResponse<T> result) throws Exception {
                                 if (result.isError()) {
-                                    //服务器不正确返回
-                                    return Flowable.error(new Exception("error"));
+                                    //服务器返回不正确
+                                    return Flowable.error(new MyException("服务器返回不正确"));
                                 } else {
                                     //服务器正确返回
                                     return createFlowableData(result.getResults());

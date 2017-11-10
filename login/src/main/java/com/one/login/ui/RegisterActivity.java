@@ -40,6 +40,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     @Override
     public void onSuccess(User user) {
         ARouter.getInstance().build("/app/main").navigation();
+        finish();
     }
 
     @Override

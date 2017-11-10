@@ -63,6 +63,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements View.
             mPresenter.login(etName.getText().toString().trim(), etPassword.getText().toString().trim());
         } else if (viewId == R.id.tv_find_pwd) {
             ARouter.getInstance().build("/app/main").navigation();
+            finish();
         } else if (viewId == R.id.tv_regist) {
             ARouter.getInstance().build("/module/register").navigation();
         }
