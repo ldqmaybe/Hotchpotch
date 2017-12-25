@@ -2,6 +2,7 @@ package com.one.callback;
 
 import com.one.base.BaseGankResponse;
 import com.one.base.BaseHttpResult;
+import com.one.base.Constant;
 import com.one.exception.MyException;
 
 import org.reactivestreams.Publisher;
@@ -103,7 +104,7 @@ public class SchedulerUtils {
                                     return Observable.error(new MyException(result.getDesc()));
                                 }else {
                                     //未知错误
-                                    return Observable.error(new MyException("未知错误"));
+                                    return Observable.error(new MyException(Constant.UNKNOWN_ERROR));
                                 }
                             }
                         });

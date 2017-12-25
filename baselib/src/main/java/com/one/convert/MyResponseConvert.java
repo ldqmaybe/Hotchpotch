@@ -18,10 +18,10 @@ import retrofit2.Converter;
  * description : please enter your class description
  */
 public class MyResponseConvert<T> implements Converter<ResponseBody, T> {
-    private Gson gson = null;
-    private TypeAdapter<T> adapter = null;
+    private Gson gson;
+    private TypeAdapter<T> adapter;
 
-    public MyResponseConvert(Gson gson, TypeAdapter<T> adapter) {
+    MyResponseConvert(Gson gson, TypeAdapter<T> adapter) {
         this.gson = gson;
         this.adapter = adapter;
     }

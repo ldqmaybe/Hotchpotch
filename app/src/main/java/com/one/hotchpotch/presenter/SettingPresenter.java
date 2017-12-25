@@ -5,9 +5,10 @@ import com.one.hotchpotch.contract.SettingContract;
 import com.one.hotchpotch.ui.fragment.SettingFragment;
 
 /**
- * Created by admin on 2017/6/27.
+ * author: LinDingQiang <br/>
+ * created on: 2017/6/27  11:09<br/>
+ * description : please enter your class description
  */
-
 public class SettingPresenter extends BasePresenter<SettingFragment> implements SettingContract.Presenter {
 
     @Override

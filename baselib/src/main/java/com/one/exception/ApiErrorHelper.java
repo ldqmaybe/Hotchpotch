@@ -1,9 +1,9 @@
 package com.one.exception;
 
+import com.one.base.Constant;
 import com.one.utils.ToastUtils;
 
 import java.io.IOException;
-import java.net.SocketTimeoutException;
 
 import retrofit2.HttpException;
 
@@ -15,18 +15,16 @@ import retrofit2.HttpException;
 public class ApiErrorHelper {
 
     public static void handleCommonError(Throwable e) {
-        String msg ;
+        String msg = "";
         if (e instanceof HttpException) {
-            msg = "服务暂不可用";
-        } else if (e instanceof SocketTimeoutException) {
-            msg = "连接超时";
-        } else if (e instanceof IOException) {
-            msg = "连接失败";
+            msg = Constant.SERVICE_ERROR;
+        }else if (e instanceof IOException) {
+            msg = Constant.CONNETCTION_FAILURE;
         } else if (e instanceof MyException) {
             MyException apiException = (MyException) e;
             msg = apiException.getMsg();;
-        } else {
-            msg = "未知错误";
+        }else {
+            msg = Constant.UNKNOWN_ERROR;
         }
         ToastUtils.showShortToast(msg);
     }
