@@ -1,6 +1,7 @@
 package com.one.net;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.one.base.Constant;
 import com.one.exception.MyException;
@@ -33,18 +34,21 @@ class LoggerInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-//        //获取请求链接的指定key的参数
-//        String method = request.url().queryParameter("cmd");
-//        String yct = PrefUtils.getString("SERVER_TIME","0");
-//        String sign = method + SERVER_KEY + yct;
-//        sign = Md5Utils.crypt(sign);
-        HttpUrl newUrl = request.url().newBuilder()
-//                .addQueryParameter("sign","a0038a2efe62c64daa82addedad5d5d8")
-//                .addQueryParameter("yct","1480328201")//模拟数据
+        HttpUrl newUrl = request.url().newBuilder()//添加url 参数
+//                .addQueryParameter("sign", "a0038a2efe62c64daa82addedad5d5d8")
+//                .addQueryParameter("yct", "1480328201")//模拟数据
 //                .addQueryParameter("shopid", "39")
                 .build();
         //http://yuecaninfo.com/services/api_boss.php?cmd=get_date&sign=c691934e14bcf492fbd08ef14f1a0bcb&yct=1480042317&shopid=39
-        request = request.newBuilder().url(newUrl).build();
+        Log.i("json", newUrl + "");
+        if ("POST".equals(request.method())) {
+            FormBody.Builder body = requestBody(request);
+            request = request.newBuilder().url(newUrl).post(body.build()).build();
+        } else if ("GET".equals(request.method())) {
+            request = request.newBuilder().url(newUrl).get().build();
+        } else {
+            request = request.newBuilder().url(newUrl).build();
+        }
         printRequestLog(request);
         Response response = null;
         try {
@@ -56,13 +60,35 @@ class LoggerInterceptor implements Interceptor {
         return response;
     }
 
+
+    /**
+     * 构造body参数
+     * @param request
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    private FormBody.Builder requestBody(Request request) throws UnsupportedEncodingException {
+        RequestBody requestBody = request.body();
+        FormBody.Builder body = new FormBody.Builder();//添加body参数
+        body.add("sign", "a0038a2efe62c64daa82addedad5d5d8").
+                add("yct", "1480328201").//模拟数据
+                add("shopid", "39");
+        if (requestBody instanceof FormBody) {
+            FormBody formBody = (FormBody) requestBody;
+            for (int i = 0; i < formBody.size(); i++) {
+                String name = URLDecoder.decode(formBody.encodedName(i), "utf-8");
+                String value = URLDecoder.decode(formBody.encodedValue(i), "utf-8");
+                body.add(name, value);
+            }
+        }
+        return body;
+    }
     /**
      * 打印请求输出
      *
      * @param request 请求
      */
     private void printRequestLog(Request request) throws UnsupportedEncodingException {
-        StringBuilder sb = new StringBuilder(request.url() + "&");
         RequestBody requestBody = request.body();
         if (requestBody instanceof FormBody) {
             FormBody formBody = (FormBody) requestBody;
@@ -70,15 +96,10 @@ class LoggerInterceptor implements Interceptor {
                 String name = URLDecoder.decode(formBody.encodedName(i), "utf-8");
                 String value = URLDecoder.decode(formBody.encodedValue(i), "utf-8");
                 if (!TextUtils.isEmpty(value)) {
-                    sb.append(name)
-                            .append("=")
-                            .append(value)
-                            .append("&");
+                    Log.i("json", "键值对：" + name + "=" + value);
                 }
             }
         }
-        String url = sb.deleteCharAt(sb.length() - 1).toString();
-        LogUtils.i("json", url);
     }
 
     /**

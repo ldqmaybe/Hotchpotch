@@ -1,5 +1,7 @@
 package com.one.base;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * @author Admin
  * @time 2016/11/24 0024.14:16
@@ -7,6 +9,7 @@ package com.one.base;
 public class BaseHttpResult<T> {
     private int status;
     private String desc;
+    @SerializedName(value = "data", alternate = {"object", "resp", "notes", "xxx"})
     private T data;
     public int getStatus() {
         return status;
