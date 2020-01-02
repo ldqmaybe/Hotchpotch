@@ -1,25 +1,21 @@
 <resources>
 
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- 状态栏和标题栏颜色-->
+    <!-- Base application theme. -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:textAllCaps">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+<!--        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>-->
+        <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme.Base">
-        <!-- 溢出菜单图标颜色-->
-        <item name="colorControlNormal">@android:color/white</item>
-        <!-- 左边箭头 -->
-        <!--<item name="drawerArrowStyle">@style/left_Drawer_Arrow_Style</item>-->
-        <!-- 溢出菜单文字颜色-->
-        <!--<item name="textAppearanceLargePopupMenu">@style/Overflow_Menu_Text_style</item>-->
-        <!-- 菜单项点击selector-->
-        <item name="actionBarItemBackground">@drawable/abc_item_background_holo_dark</item>
-        <!-- menu字体颜色-->
-        <item name="android:actionMenuTextColor">@android:color/black</item>
-        textColor 定义标题文字的颜色
-        <item name="android:textColorPrimary">@color/white</item>
+
+    <style name="AppTheme" parent="AppBaseTheme">
 
     </style>
 

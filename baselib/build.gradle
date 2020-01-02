@@ -1,19 +1,12 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.neenbedankt.android-apt'
 android {
-    compileSdkVersion Integer.parseInt(COMPILE_SDK_VERSION)
-    buildToolsVersion BUILDTOOLS_VERSION
+    compileSdkVersion rootProject.ext.versions.compileSdkVersion
     defaultConfig {
-        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
-        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
-        versionCode Integer.parseInt(VERSION_CODE)
-        versionName VERSION_NAME
+        minSdkVersion rootProject.ext.versions.minSdkVersion
+        targetSdkVersion rootProject.ext.versions.targetSdkVersion
+        versionCode rootProject.ext.versions.versionCode
+        versionName rootProject.ext.versions.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
-            }
-        }
     }
     buildTypes {
         release {
@@ -21,31 +14,27 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    compile "com.android.support:support-v4:${SUPPORT_LIB_VERSION}"
-    compile "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
-    compile "com.android.support:design:${SUPPORT_LIB_VERSION}"
-    compile "com.android.support:recyclerview-v7:${SUPPORT_LIB_VERSION}"
-
-    compile "com.android.support.constraint:constraint-layout:${CONSTRAINT_LAYOUT}"
-    compile "com.squareup.retrofit2:retrofit:${RETROFIT}"
-    compile "com.squareup.retrofit2:converter-gson:${RETROFIT}"
-    compile "com.squareup.retrofit2:adapter-rxjava2:${RETROFIT}"
-    compile "com.squareup.okhttp:logging-interceptor:${LOGGING_INTERCEPTOR}"
-    compile "io.reactivex.rxjava2:rxjava:${RXJAVA}"
-    compile "io.reactivex.rxjava2:rxandroid:${RXANDROID}"
-    compile "com.jakewharton:butterknife:${BUTTERKNIFE}"
-    compile "com.github.hackware1993:MagicIndicator:${MAGICINDICATOR}"
-    compile "com.github.CymChad:BaseRecyclerViewAdapterHelper:${BRAH}"
-    compile "in.srain.cube:ultra-ptr:${ULTRA_PTR}"
-
-    compile "com.alibaba:arouter-api:${AROUTER_API}"
-    apt "com.alibaba:arouter-compiler:${AROUTER_COMPILER}"
-
-    compile "com.tencent.bugly:crashreport:${BUGLY_CRASH}"
-
-    compile 'com.kaopiz:kprogresshud:1.0.2'
-
+    api rootProject.ext.dependencies["support-v4"]
+    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["design"]
+    api rootProject.ext.dependencies["cardview"]
+    api rootProject.ext.dependencies["recyclerview-v7"]
+    api rootProject.ext.dependencies["constraint-layout"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies["adapter-rxjava2"]
+    api rootProject.ext.dependencies["logging-interceptor"]
+    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["magicIndicator"]
+    api rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
+    api rootProject.ext.dependencies["ultra-ptr"]
+    api rootProject.ext.dependencies["kprogresshud"]
 }

@@ -43,7 +43,7 @@ public abstract class ObservableCallback<T> extends DisposableObserver<T> {
 
     @Override
     public void onComplete() {
-        LoadingUtils.dismiss();
+            LoadingUtils.dismiss();
     }
 
     @Override
@@ -53,7 +53,7 @@ public abstract class ObservableCallback<T> extends DisposableObserver<T> {
 
     @Override
     public void onError(Throwable e) {
-        LoadingUtils.dismiss();
+            LoadingUtils.dismiss();
         ApiErrorHelper.handleCommonError(e);
     }
 }

@@ -1,6 +1,6 @@
 package com.one.hotchpotch.contract;
 
-import com.one.hotchpotch.bean.Article;
+import com.one.hotchpotch.bean.GankBean;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ArticleContract {
     public interface View {
-        void onSuccess(List<Article> articles);
+        void onSuccess(List<GankBean> articles);
 
         void onFailure(Throwable e);
     }

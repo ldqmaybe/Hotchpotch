@@ -1,0 +1,54 @@
+/**
+ *  全局统一配置文件
+ */
+ext {
+    //true 每个业务Module可以单独开发
+    //false 每个业务Module以lib的方式运行
+    //修改之后需要Sync方可生效
+    isModule = false
+    //版本号
+    versions = [
+            applicationId            : "com.one.hotchpotch",        //应用ID
+            versionCode              : 1,                    //版本号
+            versionName              : "1.0.0",              //版本名称
+
+            compileSdkVersion        : 27,
+            minSdkVersion            : 17,
+            targetSdkVersion         : 27,
+
+            androidSupportSdkVersion : "27.1.1",
+            constraintLayoutVersion  : "1.0.2",
+
+            retrofitVersion          : "2.2.0",
+            rxJavaVersion            : "2.1.2",
+            rxAndroidVersion         : "2.0.1",
+            loggingInterceptorVersion: "2.6.0",
+            butterknifeVersion       : "9.0.0-rc2",
+            magicIndicatorVersion    : "1.5.0",
+            brchVersion              : "2.9.22",
+            ultraPtrVersion          : "1.0.11",
+            kprogresshudVersion      : "1.0.2",
+            glideSdkVersion          : "4.9.0"
+    ]
+    dependencies = [
+            "support-v4"                   : "com.android.support:support-v4:${versions["androidSupportSdkVersion"]}",
+            "appcompat-v7"                 : "com.android.support:appcompat-v7:${versions["androidSupportSdkVersion"]}",
+            "design"                       : "com.android.support:design:${versions["androidSupportSdkVersion"]}",
+            "cardview"                     : "com.android.support:cardview-v7:${versions["androidSupportSdkVersion"]}",
+            "recyclerview-v7"              : "com.android.support:recyclerview-v7:${versions["androidSupportSdkVersion"]}",
+            "constraint-layout"            : "com.android.support.constraint:constraint-layout:${versions["constraintLayoutVersion"]}",
+
+            "retrofit"                     : "com.squareup.retrofit2:retrofit:${versions["retrofitVersion"]}",
+            "converter-gson"               : "com.squareup.retrofit2:converter-gson:${versions["retrofitVersion"]}",
+            "adapter-rxjava2"              : "com.squareup.retrofit2:adapter-rxjava2:${versions["retrofitVersion"]}",
+            "logging-interceptor"          : "com.squareup.okhttp:logging-interceptor:${versions["loggingInterceptorVersion"]}",
+            "rxjava"                       : "io.reactivex.rxjava2:rxjava:${versions["rxJavaVersion"]}",
+            "rxandroid"                    : "io.reactivex.rxjava2:rxandroid:${versions["rxAndroidVersion"]}",
+            "magicIndicator"               : "com.github.hackware1993:MagicIndicator:${versions["magicIndicatorVersion"]}",
+            "BaseRecyclerViewAdapterHelper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:${versions["brchVersion"]}",
+            "ultra-ptr"                    : "in.srain.cube:ultra-ptr:${versions["ultraPtrVersion"]}",
+            "kprogresshud"                 : "com.kaopiz:kprogresshud:${versions["kprogresshudVersion"]}",
+            "glide"                        : "com.github.bumptech.glide:glide:${versions["glideSdkVersion"]}",
+            "glideAnnotationProcessor"     : "com.github.bumptech.glide:compiler:${versions["glideSdkVersion"]}",
+    ]
+}

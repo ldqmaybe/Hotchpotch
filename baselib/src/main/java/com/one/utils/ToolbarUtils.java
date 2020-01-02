@@ -124,7 +124,7 @@ public class ToolbarUtils {
     public static void setLeft(int icon, View.OnClickListener listener) {
         if (icon != 0) {
             toolbar_left.setVisibility(View.VISIBLE);
-            toolbar_left.setOnClickListener(null == listener ? null : listener);
+            toolbar_left.setOnClickListener(listener);
             Drawable back = activity.getResources().getDrawable(icon);
             // 调用setCompoundDrawables时，必须调用Drawable.setBounds()方法,否则图片不显示
             back.setBounds(0, 0, back.getMinimumWidth(), back.getMinimumHeight());

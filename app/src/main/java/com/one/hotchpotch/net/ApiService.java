@@ -3,7 +3,7 @@ package com.one.hotchpotch.net;
 
 import com.one.base.BaseGankResponse;
 import com.one.base.BaseHttpResult;
-import com.one.hotchpotch.bean.Article;
+import com.one.hotchpotch.bean.GankBean;
 import com.one.hotchpotch.bean.User;
 
 import java.util.List;
@@ -28,11 +28,38 @@ public interface ApiService {
      */
     String GAN_IO = "http://gank.io/api/";
 
-    //    http://gank.io/api/data/Android/10/1
-    @GET("data/Android/{counts}/{page}")
-    Flowable<BaseGankResponse<List<Article>>> getArticlesFlowable(@Path("counts") int counts, @Path("page") int page);
-    @GET("data/Android/{counts}/{page}")
-    Observable<BaseGankResponse<List<Article>>> getArticlesObservable(@Path("counts") int counts, @Path("page") int page);
+    /*
+    例：
+    http://gank.io/api/data/Android/10/1
+    http://gank.io/api/data/福利/10/1
+    http://gank.io/api/data/iOS/20/2
+    http://gank.io/api/data/all/20/2
+    */
+    /**
+     * 获取文章 支持背压
+     * @param counts 每页的条数
+     * @param page 第几页
+     * @return 文章
+     */
+    @GET("data/all/{counts}/{page}")
+    Flowable<BaseGankResponse<List<GankBean>>> getArticlesFlowable(@Path("counts") int counts, @Path("page") int page);
+    /**
+     * 获取文章 不支持背压
+     * @param counts 每页的条数
+     * @param page 第几页
+     * @return 文章
+     */
+    @GET("data/all/{counts}/{page}")
+    Observable<BaseGankResponse<List<GankBean>>> getArticlesObservable(@Path("counts") int counts, @Path("page") int page);
+
+    /**
+     * 获取福利图片 支持背压
+     * @param counts 每页的条数
+     * @param page 第几页
+     * @return 文章
+     */
+    @GET("data/福利/{counts}/{page}")
+    Flowable<BaseGankResponse<List<GankBean>>> getWelfareFlowable(@Path("counts") int counts, @Path("page") int page);
 
     /**
      * 自己搭建服务器的接口
@@ -42,5 +69,5 @@ public interface ApiService {
     @POST("LoginServlet")
     Observable<BaseHttpResult<User>> register(@Field("username") String username, @Field("password") String password);
 
-    Observable<BaseGankResponse<List<Article>>>test();
+    Observable<BaseGankResponse<List<GankBean>>>test();
 }

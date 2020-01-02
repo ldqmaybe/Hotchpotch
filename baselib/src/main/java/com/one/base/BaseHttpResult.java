@@ -3,6 +3,7 @@ package com.one.base;
 import com.google.gson.annotations.SerializedName;
 
 /**
+ * base bean
  * @author Admin
  * @time 2016/11/24 0024.14:16
  */

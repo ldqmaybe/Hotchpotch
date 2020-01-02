@@ -1,7 +1,7 @@
 package com.one.hotchpotch.presenter;
 
 import com.one.base.BasePresenter;
-import com.one.hotchpotch.bean.Article;
+import com.one.hotchpotch.bean.GankBean;
 import com.one.hotchpotch.contract.MyContract;
 import com.one.hotchpotch.net.ApiService;
 import com.one.hotchpotch.ui.fragment.MyFragment;
@@ -24,9 +24,9 @@ public class MyPresenter extends BasePresenter<MyFragment> implements MyContract
     public void testRxjava2Zip(){
         Observable observable1 = mRetrofit.createService(ApiService.class).test();
         Observable observable2 = mRetrofit.createService(ApiService.class).test();
-        Observable.zip(observable1, observable2, new BiFunction<Article, Article, String>() {
+        Observable.zip(observable1, observable2, new BiFunction<GankBean, GankBean, String>() {
             @Override
-            public String apply(@NonNull Article mobileAddress, @NonNull Article categoryResult) throws Exception {
+            public String apply(@NonNull GankBean mobileAddress, @NonNull GankBean categoryResult) throws Exception {
                 return "合并后的数据为：手机归属地：";
             }
         })

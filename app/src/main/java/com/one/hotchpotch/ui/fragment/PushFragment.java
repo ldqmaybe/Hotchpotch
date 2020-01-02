@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.one.base.BaseFragment;
 import com.one.hotchpotch.R;
-import com.one.hotchpotch.bean.Article;
+import com.one.hotchpotch.bean.GankBean;
 import com.one.hotchpotch.contract.PushContract;
 import com.one.hotchpotch.presenter.PushPresenter;
 
@@ -35,7 +35,7 @@ public class PushFragment extends BaseFragment<PushPresenter> implements PushCon
     }
 
     @Override
-    public void onSuccess(Article articles) {
+    public void onSuccess(GankBean articles) {
 
     }
 

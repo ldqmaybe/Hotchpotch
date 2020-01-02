@@ -19,8 +19,10 @@ public abstract class FlowableCallback<T> extends ResourceSubscriber<T> {
     public FlowableCallback(Context context) {
         this.context = context;
     }
+
     public FlowableCallback() {
     }
+
     public abstract void onSuccess(T t);
 
     @Override
@@ -34,7 +36,7 @@ public abstract class FlowableCallback<T> extends ResourceSubscriber<T> {
             }
             return;
         }
-        if (context !=null){
+        if (context != null) {
             //开启加载动画
             LoadingUtils.show(context);
         }

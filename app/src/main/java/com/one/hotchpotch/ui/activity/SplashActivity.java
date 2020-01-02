@@ -2,9 +2,9 @@ package com.one.hotchpotch.ui.activity;
 
 import android.os.Handler;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.one.base.BaseActivity;
 import com.one.hotchpotch.R;
+import com.one.hotchpotch.navigation.Navigator;
 
 public class SplashActivity extends BaseActivity {
 
@@ -20,13 +20,10 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ARouter.getInstance().build("/module/login").navigation();
-                finish();
-            }
-        }, 1000);
+        new Handler().postDelayed(() -> {
+            Navigator.getInstance().navigate2Main(SplashActivity.this);
+            finish();
+        }, 500);
     }
 
 }

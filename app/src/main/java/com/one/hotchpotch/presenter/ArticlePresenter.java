@@ -3,7 +3,7 @@ package com.one.hotchpotch.presenter;
 import com.one.base.BasePresenter;
 import com.one.callback.ObservableCallback;
 import com.one.callback.SchedulerUtils;
-import com.one.hotchpotch.bean.Article;
+import com.one.hotchpotch.bean.GankBean;
 import com.one.hotchpotch.contract.ArticleContract;
 import com.one.hotchpotch.net.ApiService;
 import com.one.hotchpotch.ui.fragment.ArticleFragment;
@@ -22,15 +22,15 @@ public class ArticlePresenter extends BasePresenter<ArticleFragment> implements 
     @Override
     public void getArticles(int counts, int page) {
         mRxManage.add(mRetrofit.createService(ApiService.class).getArticlesObservable(counts, page)
-                .compose(SchedulerUtils.<List<Article>>observableMapBaseResponse())
-                .subscribeWith(new ObservableCallback<List<Article>>(mView.getActivity()) {
+                .compose(SchedulerUtils.observableMapBaseResponse())
+                .subscribeWith(new ObservableCallback<List<GankBean>>(null) {
                     @Override
                     protected void onStart() {
                         super.onStart();
                     }
 
                     @Override
-                    public void onSuccess(List<Article> articles) {
+                    public void onSuccess(List<GankBean> articles) {
                         mView.onSuccess(articles);
                     }
 
@@ -41,10 +41,10 @@ public class ArticlePresenter extends BasePresenter<ArticleFragment> implements 
                     }
                 }));
 //        mRxManage.add(getService(ApiService.class).getArticlesFlowable(counts, page)
-//                .compose(SchedulerUtils.<List<Article>>flowableBaseResponse())
-//                .subscribeWith(new FlowableCallback<List<Article>>() {
+//                .compose(SchedulerUtils.<List<GankBean>>flowableBaseResponse())
+//                .subscribeWith(new FlowableCallback<List<GankBean>>() {
 //                    @Override
-//                    protected void onSuccess(List<Article> articles) {
+//                    protected void onSuccess(List<GankBean> articles) {
 //                        mView.onSuccess(articles);
 //                    }
 //

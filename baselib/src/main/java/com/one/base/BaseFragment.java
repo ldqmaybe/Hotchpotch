@@ -1,6 +1,5 @@
 package com.one.base;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +12,6 @@ import android.view.ViewGroup;
 import com.one.utils.HideUtil;
 import com.one.utils.ToolbarUtils;
 
-import butterknife.ButterKnife;
-
 /**
  * Fragment的基类
  * Created by Administrator on 2016/2/4.
@@ -22,7 +19,6 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     private View baseView;
     public T mPresenter;
-    private ProgressDialog dialog;
     /**
      * 标记是否记载过
      */
@@ -64,25 +60,11 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
 
     }
 
-    public void showDialog() {
-        dialog = new ProgressDialog(getActivity());
-        dialog.setMessage("加载中...");
-        dialog.show();
-    }
-
-    public void dismissDialog() {
-        if (dialog != null && dialog.isShowing()) {
-            // progressDialog.hide();会导致android.view.WindowLeaked
-            dialog.dismiss();
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (baseView == null) {
             baseView = getView(inflater);
             isPrepared = true;
-            ButterKnife.bind(getActivity());
             HideUtil.init(getActivity());
             ToolbarUtils.init((AppCompatActivity) getActivity());
             this.mPresenter = initPresenter();
@@ -112,8 +94,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
      * presenter与view绑定
      */
     private void initBindingView() {
-        if (mPresenter != null)
+        if (mPresenter != null) {
             mPresenter.attachView(this);
+        }
     }
 
     /**
@@ -140,9 +123,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mPresenter != null)
+        if (mPresenter != null) {
             mPresenter.detachView();
-        ButterKnife.unbind(this);
+        }
     }
     protected void onVisible() {
 

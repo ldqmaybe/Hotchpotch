@@ -1,6 +1,6 @@
 package com.one.hotchpotch.contract;
 
-import com.one.hotchpotch.bean.Article;
+import com.one.hotchpotch.bean.GankBean;
 
 /**
  * description:
@@ -9,7 +9,7 @@ import com.one.hotchpotch.bean.Article;
  */
 public class SettingContract {
     public interface View {
-        void onSuccess(Article articles);
+        void onSuccess(GankBean articles);
 
         void onFailure(Throwable e);
     }

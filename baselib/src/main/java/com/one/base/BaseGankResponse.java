@@ -1,7 +1,7 @@
 package com.one.base;
 
 /**
- * description:
+ * description:干货集中营base bean
  *
  * @author: LinDingQiang
  * @created on: 2017/8/10 16:08

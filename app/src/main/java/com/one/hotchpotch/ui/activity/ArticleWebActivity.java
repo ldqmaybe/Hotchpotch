@@ -16,18 +16,14 @@ import com.one.hotchpotch.presenter.ArticleWebPresenter;
 import com.one.hotchpotch.widget.NumberProgressBar;
 import com.one.utils.ToolbarUtils;
 
-import butterknife.Bind;
-
 /**
  * author: LinDingQiang<br/>
  * created on: 2017/6/27 16:01<br/>
  * description:
  */
 public class ArticleWebActivity extends BaseActivity<ArticleWebPresenter> implements ArticleWebContract.View {
-    @Bind(R.id.wvBoss)
-    WebView wvBoss;
-    @Bind(R.id.numberProgressBar)
-    NumberProgressBar numberProgressBar;
+    private WebView wvBoss;
+    private NumberProgressBar numberProgressBar;
 
     @Override
     protected ArticleWebPresenter initPresenter() {
@@ -41,10 +37,12 @@ public class ArticleWebActivity extends BaseActivity<ArticleWebPresenter> implem
 
     @Override
     protected void initView() {
+        wvBoss = findViewById(R.id.wvBoss);
+        numberProgressBar = findViewById(R.id.numberProgressBar);
         String url = getIntent().getStringExtra("url");
         String title = getIntent().getStringExtra("title");
         ToolbarUtils.setTitle(title);
-        ToolbarUtils.setLeft(R.mipmap.ic_back, new View.OnClickListener() {
+        ToolbarUtils.setLeft(R.mipmap.delete, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ArticleWebActivity.this.finish();
@@ -65,6 +63,7 @@ public class ArticleWebActivity extends BaseActivity<ArticleWebPresenter> implem
         setting.setDefaultTextEncodingName("utf-8");
         wvBoss.loadUrl(url);
         wvBoss.setWebChromeClient(new WebChromeClient() {
+            @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 mPresenter.getProgress(newProgress);
             }

@@ -1,17 +1,15 @@
 package com.one.hotchpotch;
 
+
+import com.one.utils.StringUtils;
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+        String time = "2019-12-26T00:20:53.212Z";
+        System.out.println(time.split("T")[1].substring(0,time.split("T")[1].length()-1));
+        System.out.println(StringUtils.getFormattedDate(time.split("T")[0]+time.split("T")[1].substring(0,time.split("T")[1].length()-1),"yyyy-MM-ddhh:mm:ss.SSS","yyyy年MM月dd日hh时mm分ss秒"));
     }
 }

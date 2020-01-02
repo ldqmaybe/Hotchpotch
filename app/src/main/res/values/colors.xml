@@ -8,4 +8,11 @@
     <color name="gray">#eeeeee</color>
     <color name="white">#ffffff</color>
     <color name="orange">#CF5339</color>
+
+    <color name="page_bg">#f6f6f6</color>
+    <color name="ablue">#8850C8FA</color>
+    <color name="cblue">#7a9668</color>
+    <color name="dividingLineColor">#eaeaea</color>
+    <color name="textColor_88">#888888</color>
+    <color name="black">#000000</color>
 </resources>
