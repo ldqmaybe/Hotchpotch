@@ -29,7 +29,8 @@ ext {
             ultraPtrVersion          : "1.0.11",
             kprogresshudVersion      : "1.0.2",
             glideSdkVersion          : "4.9.0",
-            easypermissionsVersion          : "2.0.1"
+            easypermissionsVersion          : "2.0.1",
+            realtimeblurviewVersion          : "1.2.1"
     ]
     dependencies = [
             "support-v4"                   : "com.android.support:support-v4:${versions["androidSupportSdkVersion"]}",
@@ -52,5 +53,7 @@ ext {
             "glide"                        : "com.github.bumptech.glide:glide:${versions["glideSdkVersion"]}",
             "glideAnnotationProcessor"     : "com.github.bumptech.glide:compiler:${versions["glideSdkVersion"]}",
             "easypermissions"     : "pub.devrel:easypermissions:${versions["easypermissionsVersion"]}",
+            "realtimeblurview"     : "com.github.mmin18:realtimeblurview:${versions["realtimeblurviewVersion"]}",
+
     ]
 }

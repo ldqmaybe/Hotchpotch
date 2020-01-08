@@ -13,5 +13,5 @@
 
 ![image](https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/welfare.png)
 
-
+Konlin版请 [戳这里。](https://github.com/ldqmaybe/kotlin-hotch-client)
 

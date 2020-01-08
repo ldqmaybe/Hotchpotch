@@ -38,4 +38,5 @@ dependencies {
     api rootProject.ext.dependencies["ultra-ptr"]
     api rootProject.ext.dependencies["kprogresshud"]
     api rootProject.ext.dependencies["easypermissions"]
+    api rootProject.ext.dependencies["realtimeblurview"]
 }
