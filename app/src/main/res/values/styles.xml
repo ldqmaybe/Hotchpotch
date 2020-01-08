@@ -16,7 +16,10 @@
     </style>
 
     <style name="AppTheme" parent="AppBaseTheme">
+    </style>
 
+    <style name="AppTheme.NoActionBar.FullScreen">
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="SplashTheme" parent="AppTheme">

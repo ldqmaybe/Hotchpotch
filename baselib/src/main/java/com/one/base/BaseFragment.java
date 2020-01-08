@@ -3,6 +3,7 @@ package com.one.base;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -10,13 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.one.utils.HideUtil;
+import com.one.utils.LogUtils;
+import com.one.utils.ToastUtils;
 import com.one.utils.ToolbarUtils;
+
+import java.util.List;
+
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * Fragment的基类
  * Created by Administrator on 2016/2/4.
  */
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
+public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements EasyPermissions.PermissionCallbacks {
     private View baseView;
     public T mPresenter;
     /**
@@ -127,6 +135,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
             mPresenter.detachView();
         }
     }
+
     protected void onVisible() {
 
         //取得加载模式
@@ -193,6 +202,50 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
         }
 
         loadData();
+    }
+
+    /**
+     * 重写要申请权限的Activity或者Fragment的onRequestPermissionsResult()方法，
+     * 在里面调用EasyPermissions.onRequestPermissionsResult()，实现回调。
+     *
+     * @param requestCode  权限请求的识别码
+     * @param permissions  申请的权限
+     * @param grantResults 授权结果
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    /**
+     * 当权限被成功申请的时候执行回调
+     *
+     * @param requestCode 权限请求的识别码
+     * @param perms       申请的权限的名字
+     */
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        LogUtils.i("onPermissionsGranted:获取成功的权限=" + perms);
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        StringBuilder sb = new StringBuilder();
+        for (String perm : perms) {
+            sb.append(perm).append("\n");
+        }
+        sb.replace(sb.length() - 2, sb.length(), "");
+        //用户点击拒绝并不在询问时候调用
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            ToastUtils.showShortToast("已拒绝权限" + sb + "并不再询问");
+            new AppSettingsDialog.Builder(this)
+                    .setRationale("此功能需要" + sb + "权限，否则无法正常使用，是否打开设置")
+                    .setPositiveButton("允许")
+                    .setNegativeButton("拒绝")
+                    .build()
+                    .show();
+        }
     }
 
     protected abstract LoadMode getMode();

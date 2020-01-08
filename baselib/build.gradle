@@ -37,4 +37,5 @@ dependencies {
     api rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     api rootProject.ext.dependencies["ultra-ptr"]
     api rootProject.ext.dependencies["kprogresshud"]
+    api rootProject.ext.dependencies["easypermissions"]
 }

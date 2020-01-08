@@ -50,9 +50,9 @@ public class AppManager {
     /**
      * 将activity添加到任务栈中
      *
-     * @param activity
+     * @param activity Activity
      */
-    public void addActivityTOStack(Activity activity) {
+    public void addActivityToStack(Activity activity) {
         if (sActivityStack == null) {
             sActivityStack = new Stack<Activity>();
         }

@@ -63,7 +63,6 @@ public class WelfareFragment extends BaseFragment<WelfarePresenter> implements H
         recycle.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mPtrFrame = view.findViewById(R.id.rotate_header_list_view_frame);
-        mPtrFrame = view.findViewById(R.id.rotate_header_list_view_frame);
     }
 
     private void initAdapter() {
