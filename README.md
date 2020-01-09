@@ -13,7 +13,7 @@
 	</p>
 </p>
 
-![image](https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/article.png =600x1067)
+![image](https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/article.png)
 
 - 福利
 <p align="center">
@@ -22,7 +22,7 @@
 		<em>福利</em>
 	</p>
 </p>
-![image](https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/welfare.png =600x1067)
+![image](https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/welfare.png)
 
 Konlin版请 [戳这里。](https://github.com/ldqmaybe/kotlin-hotch-client)
 
