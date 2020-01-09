@@ -7,21 +7,16 @@
 ### Demo
 - all
 <p align="center">
-	<img src="https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/article.png" alt="article"  width="600" height="1067">
-	<p align="center">
-		<em>文章</em>
-	</p>
+	<img src="https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/article.png" alt="article"  width="300" height="534">
 </p>
 
 ![image](https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/article.png)
 
 - 福利
 <p align="center">
-	<img src="https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/welfare.png" alt="welfare"  width="600" height="1067">
-	<p align="center">
-		<em>福利</em>
-	</p>
+	<img src="https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/welfare.png" alt="welfare"  width="300" height="534">
 </p>
+
 ![image](https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/welfare.png)
 
 Konlin版请 [戳这里。](https://github.com/ldqmaybe/kotlin-hotch-client)
