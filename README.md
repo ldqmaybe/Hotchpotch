@@ -7,11 +7,11 @@
 ### Demo
 - all
 
-![image](https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/article.png)
+![image](https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/article.png =600x1067)
 
 - 福利
 
-![image](https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/welfare.png)
+![image](https://github.com/ldqmaybe/hotch-client/blob/master/screenshot/welfare.png =600x1067)
 
 Konlin版请 [戳这里。](https://github.com/ldqmaybe/kotlin-hotch-client)
 
